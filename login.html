@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="logosec">
+                <h1>AGISOFT</h1>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">Downloads</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="login.html" style=" scale: 1.1;
+                        transition: 0.2s ease-in-out;
+                        text-decoration: underline; color: #fff;">Sign-in</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <div class="sec-1">
+                <div class="loginform">
+                    <div class="form">
+                        <div class="img">
+                            <img src="WhatsApp Image 2023-12-27 at 10.35.18_9b87ac97.jpg" alt="">
+                        </div>
+                        
+                        <div class="input-field">
+                            <input type="email" name="email" placeholder="Enter Email Here" class="input-field" id="email-input">
+                            <span class="fa-icon" id="email-icon"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" name="password" placeholder="Enter Password Here" class="input-field" id="password-input">
+                            <span class="fa-icon" id="password-icon"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <p class="alert-message" style="display: none; color: #fff; margin: 5px; text-align: center;">Invalid email or password. </p>
+                        <button class="btnn"><a href="#">Login</a></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.btnn').addEventListener('click', function() {
+            var email = document.querySelector('input[type="email"]').value;
+            var password = document.querySelector('input[type="password"]').value;
+            var alertMessage = document.querySelector('.alert-message');
+
+            if (email === '' || password === '') {
+                alertMessage.textContent = 'Please Enter Both E-mail And Password.';
+                alertMessage.style.display = 'block';
+            } else {
+                validateLogin(email, password);
+            }
+        });
+
+        document.getElementById('password-icon').addEventListener('click', function () {
+            var passwordInput = document.getElementById('password-input');
+            var icon = document.querySelector('#password-icon i');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-lock');
+                icon.classList.add('fa-lock-open');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-lock-open');
+                icon.classList.add('fa-lock');
+            }
+        });
+
+        function validateLogin(username, password) {
+            
+            if (username === 'haneesha@gmail.com' && password === 'Haneesha123') {
+                alert('Login successful!');
+                
+                window.location.href = 'mine.html';
+            } else {
+                var alertMessage = document.querySelector('.alert-message');
+                alertMessage.textContent = 'Invalid username or password. Please try again.';
+                alertMessage.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
+    

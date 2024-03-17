@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mine Website</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+          
+        }
+        .main-div{
+            display: flex;
+            width: 100%;
+            height: 100vh; background:linear-gradient(100deg, #ccc , navy);
+           
+            
+        }
+        .sidebar {
+            height: 93vh;
+            width: 15%;
+            position: fixed;
+            background-color: navy;
+            padding-top: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            border: 2px solid white;
+        }
+
+        .logo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 92%;
+            height: 10vh;
+            margin-left: 5px;
+            border: 3px solid black;
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .logo img{
+            width: 60%;
+            height: 80%;
+        }
+
+        .sidebar button {
+            width: 85%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-left: 15px;
+            color: #000;
+            background-color: #fff;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 15px;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .sidebar button:hover {
+           
+            scale: 1.09;
+            transition: 0.2s ease-in-out;
+        }
+
+        .person-container {
+            display: none;
+            width: 80%;
+            padding-left: 15px;
+        }
+
+        .person-container button{
+            width: 90%;
+        }
+
+        .person-container.active {
+            display: block;
+        }
+
+        .mission-container {
+            display: none;
+            margin-top: 5px;
+        }
+
+        .mission-container.active {
+            display: block;
+        }
+
+        .mission-container button {
+            width: 80%;
+            padding: 10px;
+            margin-left: 25px;
+            margin-top: 10px;
+            color: #000;
+            background-color: #fff;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 15px;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .mission-container button:hover {
+            scale: 1.09;
+            transition: 0.2s ease-in-out;
+           
+        }
+        
+        
+        .section {
+            display: flex;
+            justify-content: right;
+            align-items: right;
+            width: 85%;
+            height: 100vh;
+            margin-left: 15%;
+            flex-direction: column;
+           
+            
+        }
+        .main{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 5%;
+        }
+        h2 {text-align: center;
+            color: white;
+            margin-top: 50px;
+        
+        }
+
+        .api > iframe {
+            width: 90%; 
+            height: 50vh;
+            border: 2px solid white;
+            border-radius: 10px;
+            margin-right: 4%;
+            margin-top: 1%;
+        }
+
+       
+
+        .images-container {
+            width: 90%;
+            height: 40vh;
+            display: none; 
+            justify-content: center; 
+            align-items: center;  
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin: 1% 7%;
+            overflow-y: scroll;
+            white-space: nowrap;
+        }
+
+    .images-container >  img {
+        width: 30%;
+        height: 100%;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        border: 2px solid white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .image-resize-options {
+    display: none;
+    margin-top: 10px;
+    margin-left: 30px;
+    color: navy;
+    
+} 
+
+button a{
+    text-decoration: none;
+    color: Black;
+    font-size: 15px;
+}
+        
+    </style>
+</head>
+<body>
+    <div class="main-div">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="mine-logo.png">
+            </div>
+            
+            <button    id="Create"><a href="form.html">Create User</a></button>
+            <button id="mine-1">Mine-1</button>
+            <div class="person-container" id="person-container-1">
+                <button class="person-button" data-username="rahul" data-password="rahul1">Person-1</button>
+                <div class="mission-container" id="mission-container-1">
+                <button>Mission-1</button>
+                <button>Mission-2</button>
+                <button>Mission-3</button>
+                <button id="image1" class = "hidden" onclick="openImageLink('https://cloud.agisoft.com/shared/projects/64e1f72a-c848-4557-b03a-c49272e33872')">Project A</button>
+                </div>
+             
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="main">
+                <h2 style="font-family:georgia"> <u>Welcome to the MINE Website</u> </h2>
+            </div>
+            
+            <div class="api">
+                <iframe align="right" id ="Map"  style="visibility:hidden" width="1110%"height="100%"frameborder="0"style="border:0"src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158858.05575652535!2d-0.12775829238292686!3d51.50735093201899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604e62bca4db1%3A0x38f3fb663be52c6e!2sBuckingham%20Palace!5e0!3m2!1sen!2suk!4v1602885063043!5m2!1sen!2suk"allowfullscreen=""aria-hidden="false"tabindex="0"></iframe>
+            </div>
+
+
+            <div class="image-resize-options">
+                <label><input type="checkbox" name="resize-option" value="small"> Small</label>
+                <label><input type="checkbox" name="resize-option" value="medium"> Medium</label>
+                <label><input type="checkbox" name="resize-option" value="large"> Large</label>
+            </div>
+
+
+      
+            <div class="images-container" id="image-section">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/Arturo Flyover with Ground Control Points.png?sp=r&st=2024-02-19T04:48:31Z&se=2025-02-20T04:48:00Z&sv=2022-11-02&sig=%2BypXzdFhThCFy0EF2safwzPRBGbtYKBojpxpbxaDdfA%3D&sr=f" alt="Image 1">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0002.JPG?sp=r&st=2024-02-17T05:29:12Z&se=2025-12-18T06:29:00Z&sv=2022-11-02&sig=h6V3yINQZuCoBjLg6A2Obh4LVt7YRlszfR29ZAc9pos%3D&sr=f" alt="Image 2">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0003.JPG?sp=r&st=2024-02-17T05:29:52Z&se=2025-02-18T05:29:00Z&sv=2022-11-02&sig=xwaBWHpVdR0VVB0KQT%2FnyWvH2o6kmHZpo1uTcUXyso8%3D&sr=f" alt="Image 3">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0004.JPG?sp=r&st=2024-02-17T05:30:17Z&se=2025-02-18T05:30:00Z&sv=2022-11-02&sig=A%2BjuDJxLhfkvk34Eba8OSi7Q57Y4rtlKPgRQ3InO4ew%3D&sr=f" alt="Image 4">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0005.JPG?sp=r&st=2024-02-17T05:30:39Z&se=2025-02-18T05:30:00Z&sv=2022-11-02&sig=6kqBDPAucz5nFp4SPO%2Fj6vTNN%2FTgxJyO6WvoG8xe9lo%3D&sr=f" alt="Image 5">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0006.JPG?sp=r&st=2024-02-17T05:34:05Z&se=2025-02-18T05:34:00Z&sv=2022-11-02&sig=s1xXiCA6b0NfQxrxDtPhDY1znqx%2B%2FJ23I%2FOGR%2B3kA5E%3D&sr=f" alt="Image 6">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0007.JPG?sp=r&st=2024-02-17T05:34:16Z&se=2025-02-18T05:34:00Z&sv=2022-11-02&sig=Tse7368XLXsIGNzf6CJdZPb7IFML6EfSjlD1dxiOdrU%3D&sr=f" alt="Image 7">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0008.JPG?sp=r&st=2024-02-17T05:34:35Z&se=2025-02-18T05:34:00Z&sv=2022-11-02&sig=qHR2rM7U%2BDiplmBAFe%2F6Id9UO%2FhxUj2VLnjmggI%2FRVg%3D&sr=f" alt="Image 8">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0009.JPG?sp=r&st=2024-02-17T06:23:23Z&se=2025-02-18T06:23:00Z&sv=2022-11-02&sig=xNnqlz2FYWdMT%2BsnTXkfWtErodF1t6oyhfHSTuLNneU%3D&sr=f" alt="Image 9">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0010.JPG?sp=r&st=2024-02-17T06:23:42Z&se=2025-02-18T06:23:00Z&sv=2022-11-02&sig=pbRqzccDdhupY3%2F7xNrAIFprhs%2BK%2FJUDH5SD4uWq50w%3D&sr=f" alt="Image 10">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0011.JPG?sp=r&st=2024-02-19T04:40:14Z&se=2025-02-20T04:40:00Z&sv=2022-11-02&sig=vAxw%2FbDFlVedMxVKovVLOEdol9Pysc7dLOPbehsmQ%2BI%3D&sr=f" alt="Image 11">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0012.JPG?sp=r&st=2024-02-19T04:40:36Z&se=2025-02-20T04:40:00Z&sv=2022-11-02&sig=6Jh2gGR%2BPmCx%2BIdOGtnh02dahkLQe6ywsgBTkSRVLYs%3D&sr=f" alt="Image 12">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0013.JPG?sp=r&st=2024-02-19T04:40:54Z&se=2025-02-19T04:41:00Z&sv=2022-11-02&sig=9NQZI6VWpdi2LnK11R0xlLTGtA8SQIlwtmGrl2CJckA%3D&sr=f" alt="Image 13">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0014.JPG?sp=r&st=2024-02-19T04:41:33Z&se=2025-02-20T04:41:00Z&sv=2022-11-02&sig=7av6RUEPfuptDyleYC9WfCllXnpXYjh0ljidaBL2%2BEQ%3D&sr=f" alt="Image 14">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0015.JPG?sp=r&st=2024-02-19T04:41:52Z&se=2025-02-20T04:41:00Z&sv=2022-11-02&sig=fsuSB%2B0vWYj51hgQqC1WfkMfkkAkmmQT5nRrsUITco4%3D&sr=f"alt="Image 15">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0016.JPG?sp=r&st=2024-02-19T04:42:12Z&se=2025-02-20T04:42:00Z&sv=2022-11-02&sig=pj2LIa3Bfj6omcZ0ewrd536mhk6C%2BYk2K1yF%2BBiG5W4%3D&sr=f"alt="Image 16">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0017.JPG?sp=r&st=2024-02-19T04:42:33Z&se=2025-02-20T04:42:00Z&sv=2022-11-02&sig=CAdWQM%2BvObBPpItAOjFcc%2FN8rsVyXXyCexkkIVxUpTQ%3D&sr=f"alt="Image 17">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0018.JPG?sp=r&st=2024-02-19T04:42:54Z&se=2025-02-20T04:42:00Z&sv=2022-11-02&sig=oX90BTT2dNA96Z%2BgzkRFESgapjER0fdeTEw1EaYU60Y%3D&sr=f"alt="Image 18">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0019.JPG?sp=r&st=2024-02-19T04:46:21Z&se=2025-02-20T04:46:00Z&sv=2022-11-02&sig=ocxtYn%2BHb73qsL%2BiIZqmrCVksrBO3tO9Y7a8EEjQJr4%3D&sr=f" alt="Image 19">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0020.JPG?sp=r&st=2024-02-19T04:46:41Z&se=2025-02-20T04:46:00Z&sv=2022-11-02&sig=3%2BjSL2LIoxv2JBVnsi2dNxGkGXObA02bEFPlDkseIlg%3D&sr=f" alt="Image 20">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0021.JPG?sp=r&st=2024-02-19T05:57:21Z&se=2025-02-20T05:57:00Z&sv=2022-11-02&sig=NhqEt61hs4CIYZdajpAhEp1V4SqOIW8dbtj%2FdEgV7kw%3D&sr=f" alt="Image 21">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0022.JPG?sp=r&st=2024-02-19T04:50:10Z&se=2025-02-20T04:50:00Z&sv=2022-11-02&sig=PvSXiCk37FAWFyS%2FgeMNWHRWlP7PQcmbX5Zw%2BAUhcW4%3D&sr=f" alt="Image 22">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0023.JPG?sp=r&st=2024-02-19T04:50:28Z&se=2025-02-20T04:50:00Z&sv=2022-11-02&sig=99W18Q%2FpgHA4LcgsH7Q3yBkuSHaxzV1XqARGw2X%2FBxY%3D&sr=f" alt="Image 23">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0024.JPG?sp=r&st=2024-02-19T04:50:47Z&se=2025-02-20T04:50:00Z&sv=2022-11-02&sig=Iqt4KmnJbCYFaXCUVaz3GraTNf1TW8LFASjf3jbPoAI%3D&sr=f" alt="Image 24">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0025.JPG?sp=r&st=2024-02-19T04:51:05Z&se=2025-02-20T04:51:00Z&sv=2022-11-02&sig=V1Qmi6ACTyA8neGQnULDhtgrN7S%2BPlzzUOD3JsaaU%2B8%3D&sr=f" alt="Image 25">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0026.JPG?sp=r&st=2024-02-19T04:51:23Z&se=2025-02-20T04:51:00Z&sv=2022-11-02&sig=U%2FfekiXM5E%2FqYoA2unT38rZMLE2jcOudYn1NVJiZo6w%3D&sr=f" alt="Image 26">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0027.JPG?sp=r&st=2024-02-19T04:51:40Z&se=2025-02-20T04:51:00Z&sv=2022-11-02&sig=fQbSeMOj5DWG2SiSyBr4Da%2BtZefMV0A8hJpGAJoKLSE%3D&sr=f" alt="Image 27">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0028.JPG?sp=r&st=2024-02-19T04:52:01Z&se=2025-02-20T04:52:00Z&sv=2022-11-02&sig=jZ97qMuE1H%2BHaVp98pA%2F3F0psF55RitXj4lxOwmHTEE%3D&sr=f" alt="Image 28">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0029.JPG?sp=r&st=2024-02-19T04:52:19Z&se=2025-02-20T04:52:00Z&sv=2022-11-02&sig=EaMZtAidN6a3%2F0Z5SFXi5NjTaDr20zjZ1PhrBtVkjes%3D&sr=f" alt="Image 29">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0030.JPG?sp=r&st=2024-02-19T04:52:37Z&se=2025-02-20T04:52:00Z&sv=2022-11-02&sig=jBrC6b%2BLFxYQuFj4X01KLbtC6%2B0vz3GUd5QK8drqyPQ%3D&sr=f" alt="Image 30">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0030.JPG?sp=r&st=2024-02-19T04:52:37Z&se=2025-02-20T04:52:00Z&sv=2022-11-02&sig=jBrC6b%2BLFxYQuFj4X01KLbtC6%2B0vz3GUd5QK8drqyPQ%3D&sr=f" alt="Image 31">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0032.JPG?sp=r&st=2024-02-19T04:53:11Z&se=2025-02-20T04:53:00Z&sv=2022-11-02&sig=x6p7vV%2BHDKFBK5ynrbvgdsed6L8AQ1GEDKw9Q4W0yLE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0033.JPG?sp=r&st=2024-02-19T04:53:28Z&se=2025-02-20T04:53:00Z&sv=2022-11-02&sig=XQ7JO6eqi6xohT9YZrZWKGD%2FKe4WA6ZIOfqCROnOriQ%3D&sr=f" alt="Image 33">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0034.JPG?sp=r&st=2024-02-19T04:53:46Z&se=2024-02-20T04:53:46Z&sv=2022-11-02&sig=BPB%2F8XjftAp%2BgnAgFQsc1pacWpbGi3aMfARLyQJyZb8%3D&sr=f" alt="Image 34">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0035.JPG?sp=r&st=2024-02-19T04:54:01Z&se=2025-02-20T04:54:00Z&sv=2022-11-02&sig=rw7cmrFx5xqa%2BfE940Bc1YjzVMbLs96T%2B2KCwRry9co%3D&sr=f" alt="Image 35">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0036.JPG?sp=r&st=2024-02-19T04:54:17Z&se=2025-02-20T04:54:00Z&sv=2022-11-02&sig=V7Ta2qeT5cFYfYpUdsdhPcb74peBvPmi1BhHbUUN%2FWU%3D&sr=f" alt="Image 36">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0037.JPG?sp=r&st=2024-02-19T04:54:37Z&se=2025-02-20T04:54:00Z&sv=2022-11-02&sig=ElLvUHgcwMem9%2FvgE9vsCVaxHvm%2FLNVAONWnnOqxmWk%3D&sr=f" alt="Image 37">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0038.JPG?sp=r&st=2024-02-19T04:54:54Z&se=2025-02-20T04:54:00Z&sv=2022-11-02&sig=VmlMPOYnYQe%2BKNNmta7I1jGMbhvmRJCvLF4SszcIxn0%3D&sr=f" alt="Image 38">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0039.JPG?sp=r&st=2024-02-19T04:55:18Z&se=2025-02-20T04:55:00Z&sv=2022-11-02&sig=wq3HfKIeaGor4VTUqoN7U68x8aJY0k4GiHE8LOe0Qp4%3D&sr=f" alt="Image 39">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0040.JPG?sp=r&st=2024-02-19T04:55:35Z&se=2025-02-20T04:55:00Z&sv=2022-11-02&sig=UqY7%2B3lJUdtKIP01%2B26vcjQkED48XAnI1Rf1tMNvsuE%3D&sr=f" alt="Image 40">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0041.JPG?sp=r&st=2024-02-19T04:55:57Z&se=2025-02-20T04:55:00Z&sv=2022-11-02&sig=KINNxWxaFw6%2FG%2FJAqOW%2BIrq1QM0SIJ7DQL1Ek6vOk5o%3D&sr=f" alt="Image 41">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0042.JPG?sp=r&st=2024-02-19T04:56:18Z&se=2025-02-20T04:56:00Z&sv=2022-11-02&sig=qw22l7uXAZsmDBTCjsUxRpFzYfAPwATiwBnxd%2F2GjBc%3D&sr=f" alt="Image 42">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0043.JPG?sp=r&st=2024-02-19T04:56:39Z&se=2025-02-20T04:56:00Z&sv=2022-11-02&sig=4IdvOqAsf%2BZBqLU9%2Bp6aNW41FZITb1ZBZeOcwyuz3D8%3D&sr=f" alt="Image 43">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0044.JPG?sp=r&st=2024-02-19T04:56:57Z&se=2025-02-20T04:56:00Z&sv=2022-11-02&sig=bY%2BWLs96GehcpKk2wHlZiDVhatukBUH0Q86on5vNuos%3D&sr=f" alt="Image 44">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0045.JPG?sp=r&st=2024-02-19T04:57:13Z&se=2025-02-20T04:57:00Z&sv=2022-11-02&sig=4XM4Hq8PFgm7Hl5H6RaaULxVtiWShcUIO%2BltoCZyjRY%3D&sr=f" alt="Image 45">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0046.JPG?sp=r&st=2024-02-19T04:57:29Z&se=2025-02-20T04:57:00Z&sv=2022-11-02&sig=bL91eYdV6%2BsT5oFFF5AvHmkAbMi8AGgQ5%2FWCCp62OkQ%3D&sr=f" alt="Image 46">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0047.JPG?sp=r&st=2024-02-19T04:57:46Z&se=2025-02-20T04:57:00Z&sv=2022-11-02&sig=H88BCIIU6TtnKZYR%2Fa2ZwNG%2BW9FimEfBfyQkR208WXg%3D&sr=f" alt="Image 47">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0048.JPG?sp=r&st=2024-02-19T04:58:53Z&se=2025-02-20T04:58:00Z&sv=2022-11-02&sig=1cMep0Tz%2ByRfT%2Fj7DAafxWSL1LKveB4huMf%2BaGQZVnY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0049.JPG?sp=r&st=2024-02-19T04:59:16Z&se=2025-02-20T04:59:00Z&sv=2022-11-02&sig=%2Bni1yrzSyqkvXRZl0cU%2FrtHe2SGjxgfM6860FhRZQRo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0050.JPG?sp=r&st=2024-02-19T04:59:33Z&se=2025-02-20T04:59:00Z&sv=2022-11-02&sig=DTMgP77aBPbp192mnT9LblQCGx97TsWsv%2FSJk1spW8s%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0051.JPG?sp=r&st=2024-02-19T05:40:07Z&se=2025-02-20T05:40:00Z&sv=2022-11-02&sig=XVjTDuX%2B9GPgbA%2BW1%2BA%2BSlYPI%2Bx76by2Azq6OQZ%2FWQU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0052.JPG?sp=r&st=2024-02-19T05:40:48Z&se=2025-02-20T05:40:00Z&sv=2022-11-02&sig=3GojsFnAAbCjryVw9jQ5ENhCogxCntN5Isa4R1P8MPs%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0053.JPG?sp=r&st=2024-02-19T05:41:26Z&se=2025-02-20T05:41:00Z&sv=2022-11-02&sig=kW6mi6UWt3fqH%2FdrEPRt9GJzvoGGGQkYzErbvfz%2BvE4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0054.JPG?sp=r&st=2024-02-19T05:41:55Z&se=2025-02-20T05:41:00Z&sv=2022-11-02&sig=KN3yN5qe7xN6jIxCTfL9moVCmQikZjVUBq%2BiZYUu7gs%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0055.JPG?sp=r&st=2024-02-19T05:42:21Z&se=2025-02-20T05:42:00Z&sv=2022-11-02&sig=xo%2FqBcY%2F9uktOEsGNQTMYvfg3mhpzNWA7rKOrHwdqmw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0056.JPG?sp=r&st=2024-02-19T05:43:42Z&se=2025-02-20T05:43:00Z&sv=2022-11-02&sig=qZF7a1Esd9n%2BJilayEZCeSaSxdJ5wgis4SKJTVbumsg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0057.JPG?sp=r&st=2024-02-19T05:44:05Z&se=2025-02-20T05:44:00Z&sv=2022-11-02&sig=E3Jd9%2Fggb7hRojwwCjyHxIxepJg%2BsYw%2BH0UJu7xMQ5g%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0058.JPG?sp=r&st=2024-02-19T05:44:48Z&se=2025-02-20T05:44:00Z&sv=2022-11-02&sig=aSGB7cnpM7Qs5EhnFvUfelVpUA0EE28R%2FPFdQ4oAPZU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0059.JPG?sp=r&st=2024-02-19T05:45:08Z&se=2025-02-20T05:45:00Z&sv=2022-11-02&sig=SfIiJOlbW2PFW4zEPVlCCFRy3kru%2BMMU53WrRGVX%2B1Y%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0060.JPG?sp=r&st=2024-02-19T05:45:33Z&se=2025-02-20T05:45:00Z&sv=2022-11-02&sig=iHSqAZVZHWI2dvaDPMpTuC4Z3AqIHJvSVjbX4%2FhiJKo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0061.JPG?sp=r&st=2024-02-19T05:46:07Z&se=2025-02-20T05:46:00Z&sv=2022-11-02&sig=3wYiJS%2Ba1qiwsXXlgclfCokFzbDUKEHbuL3e%2BsmM%2BVg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0062.JPG?sp=r&st=2024-02-19T05:46:36Z&se=2025-02-20T05:46:00Z&sv=2022-11-02&sig=IRBH%2FgHgt6nGVMsgZLwp%2B7GXZc7JSO5Q4vfShEF2TPU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0063.JPG?sp=r&st=2024-02-19T05:46:57Z&se=2025-02-20T05:46:00Z&sv=2022-11-02&sig=A5WMRgWkHN5mpHQAjH9Txz7sOb5I2iW0AYJHFsjalHU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0064.JPG?sp=r&st=2024-02-19T05:47:22Z&se=2025-02-20T05:47:00Z&sv=2022-11-02&sig=N0GAvI2i8hg8YRFW9ZCEJeGATmFLuUzx%2FLzvrmX%2B9g0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0065.JPG?sp=r&st=2024-02-19T05:47:40Z&se=2025-02-19T05:47:00Z&sv=2022-11-02&sig=nqBLJ0FWSG9DZwnfQjoDOcXmyhr28o5fBBwvrGJY130%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0066.JPG?sp=r&st=2024-02-19T05:58:17Z&se=2025-02-20T05:58:00Z&sv=2022-11-02&sig=oBp7WTIxK0YBIFSoPpuZBnVa48ByMTkErO6Ds%2FK1fv8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0067.JPG?sp=r&st=2024-02-19T05:58:31Z&se=2025-02-20T05:58:00Z&sv=2022-11-02&sig=LM6GhLfMrbksGgfev93ZOovw7GyJC2DrtzY48PXbV9Q%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0068.JPG?sp=r&st=2024-02-19T05:58:48Z&se=2025-02-20T05:58:00Z&sv=2022-11-02&sig=ZNfHl2EVMq3gCjbtF%2BgHmbUQTGFw7hSquEwONtdwqoY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0069.JPG?sp=r&st=2024-02-19T05:59:08Z&se=2025-02-19T05:59:00Z&sv=2022-11-02&sig=C5voAsiV%2FNc%2BeFIxUvfVr7c1tetsfRIFYphVho%2BZefM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0070.JPG?sp=r&st=2024-02-19T05:59:41Z&se=2025-02-20T05:59:00Z&sv=2022-11-02&sig=RxNOQOFpFROXrXrJpZiRICBmwR69LZyES5AdcWj6r%2Bk%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0071.JPG?sp=r&st=2024-02-19T06:01:52Z&se=2025-02-20T06:01:00Z&sv=2022-11-02&sig=gCmUb4bNEBXRXQNaqOcpeh8r%2BpAYdRr3zuMSz8W4X2g%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0072.JPG?sp=r&st=2024-02-19T06:02:14Z&se=2025-02-19T06:02:00Z&sv=2022-11-02&sig=KzaK07vvl4L0o%2B4G7JwBf%2Bhnga%2BOD15j8Ed5vuojClU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0073.JPG?sp=r&st=2024-02-19T06:02:56Z&se=2025-02-20T06:02:00Z&sv=2022-11-02&sig=sZgIIHl55odUw184AZJ96fmzf%2BoSi0hqMYE5MzOJgpo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0074.JPG?sp=r&st=2024-02-19T06:03:24Z&se=2025-02-20T06:03:00Z&sv=2022-11-02&sig=26aSk72JQdGtJnAPtS2gqNLNEc%2Fc50Ayw89rtcB8bqo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0075.JPG?sp=r&st=2024-02-19T06:03:50Z&se=2025-02-20T06:03:00Z&sv=2022-11-02&sig=MxyhXaRua9Nl54MVXMBDnfYe4CxB%2BWdcPj36BFahg5Q%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0076.JPG?sp=r&st=2024-02-19T06:04:11Z&se=2025-02-20T06:04:00Z&sv=2022-11-02&sig=pVRwlkA73KNFrsOZ%2FCmkf4XMU0%2FfN0rxwM58%2FlvQIsI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0077.JPG?sp=r&st=2024-02-19T06:04:32Z&se=2025-02-20T06:04:00Z&sv=2022-11-02&sig=NGvRyYvLlJeNDVk3615p6xrkpCXLGOitQZ2%2FjJi8IAE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0078.JPG?sp=r&st=2024-02-19T06:05:11Z&se=2025-02-20T06:05:00Z&sv=2022-11-02&sig=W0JJk%2F4KTt6t9ag6zIRsZDJfZORUDYKHIEBL%2F2%2BAFZY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0079.JPG?sp=r&st=2024-02-19T06:05:36Z&se=2025-02-20T06:05:00Z&sv=2022-11-02&sig=aKifMg9B%2FKpafSLGrESaWVpmCHnjEFiLl%2BVY%2BTLEVJY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0080.JPG?sp=r&st=2024-02-19T06:05:58Z&se=2025-02-20T06:05:00Z&sv=2022-11-02&sig=HuiAc4qmyT0rlNLmpFpb58zimquXAL1sUliSaeHe1OI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0081.JPG?sp=r&st=2024-02-19T06:06:21Z&se=2025-02-20T06:06:00Z&sv=2022-11-02&sig=5%2BZ%2FnsDhFbrHk%2BszkIVCiFr6etlrlRff7w%2By%2BVAsl14%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0082.JPG?sp=r&st=2024-02-19T06:08:18Z&se=2025-02-20T06:08:00Z&sv=2022-11-02&sig=tPJLNxX%2Bmx2%2BXo3JTN0%2B%2Fb9LytGspZ5kl%2F%2FopSvQEbA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0083.JPG?sp=r&st=2024-02-19T06:08:42Z&se=2025-02-20T06:08:00Z&sv=2022-11-02&sig=Ls0ZFXgNowMk67NY%2FRFL6G2Cepiep3d52z9YTC7%2BsoQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0084.JPG?sp=r&st=2024-02-19T06:10:23Z&se=2025-02-20T06:10:00Z&sv=2022-11-02&sig=dwVkIHBJ0rRRMmev7wYzTwJCLkDfCh0heLG8IyjGuow%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0085.JPG?sp=r&st=2024-02-19T06:10:47Z&se=2025-02-19T06:10:00Z&sv=2022-11-02&sig=VuGiY6A5FICXQy2v9qbke81qpxF2EChvVCiWf%2FwTEyg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0086.JPG?sp=r&st=2024-02-19T06:11:14Z&se=2025-02-20T06:11:00Z&sv=2022-11-02&sig=0FecySg9L0IsIyCZFpl2u8hmsP%2FGyftcfkL%2BtsmzN9A%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0087.JPG?sp=r&st=2024-02-19T06:11:36Z&se=2025-02-20T06:11:00Z&sv=2022-11-02&sig=2jrpUJfefzwziuHDdDqD8A2WHz9PEz5B1kxqTeW1W8o%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0088.JPG?sp=r&st=2024-02-19T06:12:06Z&se=2025-02-20T06:12:00Z&sv=2022-11-02&sig=4BO%2FNu9q0naaWoBmmCk2p4ipTxpNlv6M%2B%2BM%2B5wfxoRo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0089.JPG?sp=r&st=2024-02-19T06:12:43Z&se=2025-02-20T06:12:00Z&sv=2022-11-02&sig=cCZWdS6%2FDc%2BOGWn2GBxjyWjmkOz5Z5qsUihmUORycKQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0090.JPG?sp=r&st=2024-02-19T06:13:33Z&se=2025-02-20T06:13:00Z&sv=2022-11-02&sig=5yNKxbrr2tRQLouw82PQC07asC8vzuxqsx%2B7NSOk0LM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0091.JPG?sp=r&st=2024-02-19T06:13:55Z&se=2025-02-20T06:13:00Z&sv=2022-11-02&sig=eVN92m5unEkBHAhB3xCzs0guNcm4RQU13XBAZP93jLw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0092.JPG?sp=r&st=2024-02-19T06:14:17Z&se=2025-02-20T06:14:00Z&sv=2022-11-02&sig=vlmYzxRZlH5SyjhkffoUWskK%2BnooLYQl7raS3NiFe5A%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0093.JPG?sp=r&st=2024-02-19T06:14:37Z&se=2025-02-20T06:14:00Z&sv=2022-11-02&sig=jamd2NliQNBsZ%2FwH8vraiP00kF2waHgtSDk1Q6en5oo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0094.JPG?sp=r&st=2024-02-19T06:14:58Z&se=2025-02-20T06:14:00Z&sv=2022-11-02&sig=iVuF01IsvU%2BZamkxG1WxN5ziUlmYxnt6bxfkaQs6JVc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0095.JPG?sp=r&st=2024-02-19T06:15:43Z&se=2025-02-20T06:15:00Z&sv=2022-11-02&sig=OCI7Msuzlg0wHsj4adim9EQ8VC78DkB8d0kPl4IT7x0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0096.JPG?sp=r&st=2024-02-19T06:18:07Z&se=2025-02-20T06:18:00Z&sv=2022-11-02&sig=0%2FKGMmn17O5h3%2F9ve4hGi6FNeJl0EycGtJbaipY%2FGKc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0097.JPG?sp=r&st=2024-02-19T06:18:35Z&se=2025-02-20T06:18:00Z&sv=2022-11-02&sig=UckDV0Br6ZAMgiqnddz1D1F0nxTb3zYdyyuu6gaa00c%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0098.JPG?sp=r&st=2024-02-19T06:20:17Z&se=2025-02-20T06:20:00Z&sv=2022-11-02&sig=bMIWZFyThkBmj5a5aI3sg%2BgdNGHydixsXQy%2B7rub1jI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0099.JPG?sp=r&st=2024-02-19T06:20:45Z&se=2025-02-20T06:20:00Z&sv=2022-11-02&sig=0U%2FqgRec15c5gyI17Lnkg%2FNiLvEnbOkG4IvUC072cdI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0101.JPG?sp=r&st=2024-02-19T06:21:49Z&se=2025-02-20T06:21:00Z&sv=2022-11-02&sig=usyP%2BXXzP53IK3P1u2542nPFPJJseJH8UFRfNzRD40Y%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0101.JPG?sp=r&st=2024-02-19T06:21:49Z&se=2025-02-20T06:21:00Z&sv=2022-11-02&sig=usyP%2BXXzP53IK3P1u2542nPFPJJseJH8UFRfNzRD40Y%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0102.JPG?sp=r&st=2024-02-19T06:22:52Z&se=2025-02-20T06:22:00Z&sv=2022-11-02&sig=DHggJEpo9g6MasWZqb%2BsFfMzIt13hUau5oRmV%2BN0Q6M%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0103.JPG?sp=r&st=2024-02-19T06:23:44Z&se=2025-02-20T06:23:00Z&sv=2022-11-02&sig=hZsWiKRBM3SGbNoLV2AZzrl9VymZKnhI848wPtk1%2Ft0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0104.JPG?sp=r&st=2024-02-19T06:24:02Z&se=2025-02-20T06:24:00Z&sv=2022-11-02&sig=KUr%2F%2FFpB7mf6kyrHTeeU69PrI5M3Ge42XTgoOQTaE3s%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0105.JPG?sp=r&st=2024-02-19T06:24:21Z&se=2025-02-20T06:24:00Z&sv=2022-11-02&sig=MS30qRog0z49wf%2BCp37O1cqsSn%2Fbu8BdpzyL6yAgOzk%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0106.JPG?sp=r&st=2024-02-19T06:24:57Z&se=2025-02-20T06:24:00Z&sv=2022-11-02&sig=IwJEPAwnXP9jXNUv8Rjv0zDmggRAbdilSXEdrOWLmd8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0107.JPG?sp=r&st=2024-02-19T06:26:28Z&se=2025-02-19T06:26:00Z&sv=2022-11-02&sig=hIKwZXcdqBXoZy2oBTICXtfQDJ40RUU%2BtKzD20IA7nA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0108.JPG?sp=r&st=2024-02-19T06:27:02Z&se=2025-02-20T06:27:00Z&sv=2022-11-02&sig=4JUVQAP6TQFaHNLQz%2F4PfyWLtFtCspQQv4Zr%2FaLqsTw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0109.JPG?sp=r&st=2024-02-19T06:27:25Z&se=2025-02-19T06:27:00Z&sv=2022-11-02&sig=U5J%2BJp1MohswpSYcs8kRUUC8NVWxxBd9qgjKN%2FuAE5Q%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0110.JPG?sp=r&st=2024-02-19T06:27:55Z&se=2025-02-20T06:27:00Z&sv=2022-11-02&sig=ZymNn2dyk20wD5UtXB2bu%2B%2BUlFovV6qaS4ofaHRE8gw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0111.JPG?sp=r&st=2024-02-19T06:28:15Z&se=2025-02-20T06:28:00Z&sv=2022-11-02&sig=QQhoFaFx35O7giPIGPr0w1ZEwowOHntpOPlQVYDBHPk%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0112.JPG?sp=r&st=2024-02-19T06:28:44Z&se=2025-02-20T06:28:00Z&sv=2022-11-02&sig=MFdivmYK0yPYqsOn3RsTu63ExamqwGXbSSfvGtlNMIk%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0113.JPG?sp=r&st=2024-02-19T06:29:03Z&se=2025-02-20T06:29:00Z&sv=2022-11-02&sig=9ZGeyoXHT5kqDni7Eg8SVO7JjzREET06RMGVz8z0b9Q%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0114.JPG?sp=r&st=2024-02-19T06:29:26Z&se=2025-02-20T06:29:00Z&sv=2022-11-02&sig=YFlAb3rxd%2BOCr%2FR%2BoNtDvat%2F5H12niXlq4UjDIXO4Lw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0115.JPG?sp=r&st=2024-02-19T06:29:46Z&se=2025-02-20T06:29:00Z&sv=2022-11-02&sig=IsHYaMTPrCxDmyMagOWlXeAgt9iP6i87sERQXic99IQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0116.JPG?sp=r&st=2024-02-19T06:30:32Z&se=2025-02-20T06:30:00Z&sv=2022-11-02&sig=znuPMPppbenH9qI4OyimOX1vxR31iBlZI9%2BF43QrRIE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0117.JPG?sp=r&st=2024-02-19T06:30:54Z&se=2025-02-20T06:30:00Z&sv=2022-11-02&sig=U5VnBYfi8lTI1Uanz6rkEvgCSYFy%2Fwp31r%2Fzn1pSzpw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0118.JPG?sp=r&st=2024-02-19T06:31:20Z&se=2025-02-20T06:31:00Z&sv=2022-11-02&sig=GDtYUTlQx7DEW81xA6wrnTtpEEPdSNUAg4xxjlp9EDg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0119.JPG?sp=r&st=2024-02-19T06:31:38Z&se=2025-02-20T06:31:00Z&sv=2022-11-02&sig=Fe2a0vBXwU2%2F5%2B7RZB2vV74mkUkQ4XJ7XGto9nOqbl4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0120.JPG?sp=r&st=2024-02-19T06:31:53Z&se=2025-02-20T06:31:00Z&sv=2022-11-02&sig=7bZ12oTt2cSeM1DQ%2B8fXklgFUSqiQpSn2mjLkJ2lPIk%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0121.JPG?sp=r&st=2024-02-19T06:32:21Z&se=2025-02-20T06:32:00Z&sv=2022-11-02&sig=p9Q6eSvK5U4UP2KN%2BweW4LqU1MHiEidRwtT2jAwIih8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0122.JPG?sp=r&st=2024-02-19T06:32:43Z&se=2025-02-20T06:32:00Z&sv=2022-11-02&sig=SM7XfVUyi%2B2CYaMF0iKVvVgrx9QyrSXWDppFgNA%2FLxM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0123.JPG?sp=r&st=2024-02-19T06:33:04Z&se=2025-02-20T06:33:00Z&sv=2022-11-02&sig=ijaH0m9OU7K%2BAK0Sksb4ORg0k7xTMDotOd99Fch%2FoWM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0124.JPG?sp=r&st=2024-02-19T06:33:28Z&se=2025-02-20T06:33:00Z&sv=2022-11-02&sig=u4FNb0vpvAerpSHH8vvpQqX9Bt4O44Dq3o5J1hgbt44%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0125.JPG?sp=r&st=2024-02-19T06:34:21Z&se=2025-02-20T06:34:00Z&sv=2022-11-02&sig=cyV9wBQYmlP2TeojIL3LIkjkcSj171%2B4pBXDePTaw6w%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0126.JPG?sp=r&st=2024-02-19T06:34:43Z&se=2025-02-20T06:34:00Z&sv=2022-11-02&sig=lZHAq2BOK6gqsgAZfuLtPlkicFiZWY0iwn1ucM4bEN0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0127.JPG?sp=r&st=2024-02-19T06:35:02Z&se=2025-02-20T06:35:00Z&sv=2022-11-02&sig=01jUVHui%2B6xtdMJfiirKHPkz1Knnfo8mGD2iNfuxnks%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0128.JPG?sp=r&st=2024-02-19T06:35:22Z&se=2025-02-20T06:35:00Z&sv=2022-11-02&sig=a3aaOieI4dxID1Hlpel0liu0JKiQ6gaYTLsHQxroT6I%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0129.JPG?sp=r&st=2024-02-19T06:35:40Z&se=2025-02-20T06:35:00Z&sv=2022-11-02&sig=Q4%2F1sAjZKKFmd2kgf4ea8HEhN8IIbKpI%2Br9pfNHYOM0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0130.JPG?sp=r&st=2024-02-19T06:36:03Z&se=2025-02-19T06:36:00Z&sv=2022-11-02&sig=dAHCkIEpeMzcCyAkkZUR6Q%2BqMlZI%2FqJSzZcLF%2BxtW9I%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0131.JPG?sp=r&st=2024-02-19T06:36:28Z&se=2025-02-20T06:36:00Z&sv=2022-11-02&sig=vTmoo2mPad7o6tNAvUnNChBnQ%2B8znx7EEzQSbtjU3B4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0132.JPG?sp=r&st=2024-02-19T06:36:47Z&se=2025-02-20T06:36:00Z&sv=2022-11-02&sig=SiYwqJol%2BpW%2F5rIow9ZdYDHLDg03iLccgIijHBRvJ2E%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0133.JPG?sp=r&st=2024-02-19T08:04:59Z&se=2025-02-20T08:04:00Z&sv=2022-11-02&sig=iqs5NI0d1u0r2KIRX%2F64LAi3nWscJjDCsiSVD1t%2FdGc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0134.JPG?sp=r&st=2024-02-19T06:39:02Z&se=2025-02-20T06:39:00Z&sv=2022-11-02&sig=DNLxQ7crRJGq5%2FOTEI64g4zdck6IBHEF%2FDfVeLyYG7Y%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0135.JPG?sp=r&st=2024-02-19T06:39:27Z&se=2025-02-20T06:39:00Z&sv=2022-11-02&sig=2a%2B%2BP5cw%2Fqzing5CIGouT3bw%2BedC%2BECeO8NHLqMkvdk%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0136.JPG?sp=r&st=2024-02-19T06:40:08Z&se=2025-02-20T06:40:00Z&sv=2022-11-02&sig=ueC67HZQFBQIPool7nwcvZK1ibhtfYlR2kRf12CFrc0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0137.JPG?sp=r&st=2024-02-19T06:40:47Z&se=2025-02-20T06:40:00Z&sv=2022-11-02&sig=2uiiEHVjFbVvXiZJYa%2F7BdDdpzKlOSZoEO0Bp8MbrCQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0137.JPG?sp=r&st=2024-02-19T06:40:47Z&se=2025-02-20T06:40:00Z&sv=2022-11-02&sig=2uiiEHVjFbVvXiZJYa%2F7BdDdpzKlOSZoEO0Bp8MbrCQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0139.JPG?sp=r&st=2024-02-19T06:41:55Z&se=2025-02-20T06:41:00Z&sv=2022-11-02&sig=fHdEVlaJIj5%2BfkiSrpKwY%2FvX21RcokVELqaKAXJH2dY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0140.JPG?sp=r&st=2024-02-19T06:42:18Z&se=2025-02-20T06:42:00Z&sv=2022-11-02&sig=Zf5pH%2Bi2YaJBGqeuQ4lXevk4Cp5CmPRXYsU%2FpBQCWlg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0141.JPG?sp=r&st=2024-02-19T06:42:45Z&se=2025-02-20T06:42:00Z&sv=2022-11-02&sig=INeiuGvpovB%2FB9%2FbckJXmtpL4vjam7Hf9L3Ni%2F1O%2FYQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0142.JPG?sp=r&st=2024-02-19T06:43:05Z&se=2025-02-20T06:43:00Z&sv=2022-11-02&sig=h6Fbd%2B0CFnXKzqR%2FLr5h3Nm9Gh%2FDe7uidyZW5iNHofk%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0143.JPG?sp=r&st=2024-02-19T06:43:25Z&se=2025-02-20T06:43:00Z&sv=2022-11-02&sig=nCY9EXvENG8RFYSejN9fxjradpDDWLXJsRapnHMx2ic%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0144.JPG?sp=r&st=2024-02-19T06:43:48Z&se=2025-02-20T06:43:00Z&sv=2022-11-02&sig=MgOIZTKZWo8GDZT0L33tunoUibd4cJQjOii%2FsfhXMsY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0145.JPG?sp=r&st=2024-02-19T06:44:06Z&se=2025-02-20T06:44:00Z&sv=2022-11-02&sig=K%2BJvep1AKZtB1klbyHcL6w7CcDDRbcIrvHoH3oX7lr0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0146.JPG?sp=r&st=2024-02-19T06:44:27Z&se=2025-02-20T06:44:00Z&sv=2022-11-02&sig=5fnatujjph5QEV%2BMny7s5nFEYk%2F5b6s5viAbYI5fChs%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0147.JPG?sp=r&st=2024-02-19T06:45:01Z&se=2025-02-20T06:45:00Z&sv=2022-11-02&sig=hBG5sXMduWVIlhc87jNWfrvZ4bS%2BJcSpaoRo5iizmJE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0148.JPG?sp=r&st=2024-02-19T06:45:23Z&se=2025-02-20T06:45:00Z&sv=2022-11-02&sig=pCLG2RXvkGOp0go47frfAUJerBqzr90j9gZaC7vMA1w%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0149.JPG?sp=r&st=2024-02-19T06:46:23Z&se=2025-02-20T06:46:00Z&sv=2022-11-02&sig=UrcfvC1AtK8U5gpNSdRVxFl5Mf6mUDos5hYn6yJkJNo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0150.JPG?sp=r&st=2024-02-19T06:46:40Z&se=2025-02-20T06:46:00Z&sv=2022-11-02&sig=oWfDTPFjhQVA9SZsMUq7uDjJ9vnKHXmQp7QAOOimv6M%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0151.JPG?sp=r&st=2024-02-19T06:46:58Z&se=2025-02-20T06:46:00Z&sv=2022-11-02&sig=dOjUVWGDI1OWYVLbJQr34qVnZNJpMj1p5FZYOhvcCy0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0152.JPG?sp=r&st=2024-02-19T06:47:16Z&se=2025-02-20T06:47:00Z&sv=2022-11-02&sig=sraky8WQH%2FiHLQUawLa6YA9uSZ5dyDMz6ObDGCMlPmU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0153.JPG?sp=r&st=2024-02-19T06:47:34Z&se=2025-02-20T06:47:00Z&sv=2022-11-02&sig=uegJF60cVKOVbYTt5DP3NPz0b%2Bg1HoSI9YtXTdMmaJ4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0154.JPG?sp=r&st=2024-02-19T06:47:55Z&se=2025-02-20T06:47:00Z&sv=2022-11-02&sig=Bwy6iAEGjA2yIEvE8anVlAgu0gj%2BqyOn%2B4P8%2Fjw%2FQjg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0155.JPG?sp=r&st=2024-02-19T06:48:32Z&se=2025-02-20T06:48:00Z&sv=2022-11-02&sig=uaciFl5PFvXHjMtJVJ10MXKjRYUqGm0ILYqDKEmegrg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0156.JPG?sp=r&st=2024-02-19T06:48:56Z&se=2025-02-20T06:48:00Z&sv=2022-11-02&sig=kILYmoJa25ZwQjWl%2BrYdOhQ9xkxXLF%2BRYh3S6%2FAl5VI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0157.JPG?sp=r&st=2024-02-19T06:49:22Z&se=2025-02-20T06:49:00Z&sv=2022-11-02&sig=cQf0i1y4qVkRuX%2BZ6c4ggaLEK3be%2Fuq64kFu9tdSgQA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0158.JPG?sp=r&st=2024-02-19T06:49:39Z&se=2025-02-20T06:49:00Z&sv=2022-11-02&sig=9KP46NV7YIDExc9z37wykZzq8KbxZ%2FdrfOYvuKbrccg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0159.JPG?sp=r&st=2024-02-19T06:49:57Z&se=2025-02-20T06:49:00Z&sv=2022-11-02&sig=FJGvaI8WvlXcXn%2B9Xr%2FkDp5dmTGzy0yv2j6OjBV7vOI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0160.JPG?sp=r&st=2024-02-19T06:50:19Z&se=2025-02-19T22:50:00Z&spr=https&sv=2022-11-02&sig=VXGIbSB66156MU9ppRWf88bLjn7n%2F7lGz3G9c7GLqCU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0161.JPG?sp=r&st=2024-02-19T06:50:46Z&se=2025-02-20T06:50:00Z&sv=2022-11-02&sig=ciWhDzxiB8oe5wpsQBZZWiOYRSlmnTsjm8S53xMTA5A%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0162.JPG?sp=r&st=2024-02-19T06:51:18Z&se=2025-02-20T06:51:00Z&sv=2022-11-02&sig=gsfWFWZiJTzAenE56gdfOoWasaPd9iphummXo%2BC5IEI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0163.JPG?sp=r&st=2024-02-19T06:51:40Z&se=2025-02-20T06:51:00Z&sv=2022-11-02&sig=%2BC7rytv5DXlZiakHgd77t5urFHbyyJcsYNll%2B3AUgfc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0164.JPG?sp=r&st=2024-02-19T06:52:35Z&se=2025-02-20T06:52:00Z&sv=2022-11-02&sig=TUf7p9YwS7n0e5I0EmvWw0K%2BeTa4bTtjkIGAwpcvbBY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0165.JPG?sp=r&st=2024-02-19T06:52:58Z&se=2025-02-20T06:52:00Z&sv=2022-11-02&sig=Pfg7989Re59BdQpFEi1c8KQLoxGjDUNdYeMOcXhQMr0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0166.JPG?sp=r&st=2024-02-19T06:53:18Z&se=2025-02-20T06:53:00Z&sv=2022-11-02&sig=lfHUCp5lkupzFLobAtxlLQ1opiGFd8JhEdcxpD%2BcZiA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0167.JPG?sp=r&st=2024-02-19T06:53:41Z&se=2025-02-20T06:53:00Z&sv=2022-11-02&sig=LM7R562kp3WSlwIv%2FzezjYF7AQqI6Wv6gBzdRJhLF7k%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0168.JPG?sp=r&st=2024-02-19T06:53:59Z&se=2025-02-20T06:53:00Z&sv=2022-11-02&sig=JTdcswyvGaX2Dgfl5oYtFN1LHz%2BjRuRDn3xEOSjiQWs%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0169.JPG?sp=r&st=2024-02-19T06:54:22Z&se=2025-02-20T06:54:00Z&sv=2022-11-02&sig=bNMtj9RIMa56%2FBt4ohBwpbNIF5m%2FJSEBaWJgEEf9hg8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0170.JPG?sp=r&st=2024-02-19T06:54:44Z&se=2025-02-20T06:54:00Z&sv=2022-11-02&sig=TEjLt%2BFj5m5nR1WQY%2FCZPAxo7WtK7wiRTSaY%2Fb7t3eM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0171.JPG?sp=r&st=2024-02-19T06:55:04Z&se=2025-02-20T06:55:00Z&sv=2022-11-02&sig=UomqQRZdRH2GAS%2FgJvDiqRUxSpYLiGBTDiHizS19fvo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0172.JPG?sp=r&st=2024-02-19T06:55:26Z&se=2025-02-20T06:55:00Z&sv=2022-11-02&sig=bAfbDOO9OtsDgUnEuz75lyCODIPAmXD4kf9%2BF9yiaYI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0173.JPG?sp=r&st=2024-02-19T06:55:44Z&se=2025-02-20T06:55:00Z&sv=2022-11-02&sig=286R4wx9WO7ODj1TBlVUQLO2MT3OEVPROln76DWdIdQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0174.JPG?sp=r&st=2024-02-19T06:56:05Z&se=2025-02-20T06:56:00Z&sv=2022-11-02&sig=qLfUIi2C2EFTW4q4QghK6RlYY0gDj%2FwAYsGX4zElIm8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0175.JPG?sp=r&st=2024-02-19T06:56:25Z&se=2025-02-20T06:56:00Z&sv=2022-11-02&sig=5MqgFVo16HBHcVfK6ERXKvyJo6t9qKRvo9t4cYjjVIY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0176.JPG?sp=r&st=2024-02-19T06:56:42Z&se=2025-02-20T06:56:00Z&sv=2022-11-02&sig=JA3DvaK%2BdaDNCuc0%2FT5mBHnG3tHHieNeUx%2F3iTaX5Vc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0177.JPG?sp=r&st=2024-02-19T06:57:10Z&se=2025-02-20T06:57:00Z&sv=2022-11-02&sig=f2BAiwCyNVhxiQFPStW70Eq7mPrFTttheDDIALjhRVA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0178.JPG?sp=r&st=2024-02-19T06:57:31Z&se=2025-02-20T06:57:00Z&sv=2022-11-02&sig=Kwk9QoHUev%2B3xQW2VlkigsKsdHgC4fWy%2FB%2BKwZT2MQY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0179.JPG?sp=r&st=2024-02-19T06:57:49Z&se=2025-02-20T06:57:00Z&sv=2022-11-02&sig=xJqYWstlveJ2TlWL8Bqw7d4dWSLocC2Y4cywvAeHKrc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0180.JPG?sp=r&st=2024-02-19T06:58:07Z&se=2025-02-20T06:58:00Z&sv=2022-11-02&sig=RcQib6EY6jTkQK2z6uKgV3i17JzheYwS0MlqZquvAh8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0181.JPG?sp=r&st=2024-02-19T06:58:31Z&se=2025-02-20T06:58:00Z&sv=2022-11-02&sig=aq3tBRdT6zBzt%2B4xyvahnkSay5YyxMkCBrIM%2BgE7c5Q%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0182.JPG?sp=r&st=2024-02-19T06:58:49Z&se=2025-02-20T06:58:00Z&sv=2022-11-02&sig=zrcUQfJslFmh1IP15I2jKzpqwyHyWLtxXkkgFRpthUg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0183.JPG?sp=r&st=2024-02-19T06:59:10Z&se=2025-02-20T06:59:00Z&sv=2022-11-02&sig=YkwnoGmWeVunYkGA4w2UqiUAEHdeV8ODPS4xPe0eQWQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0184.JPG?sp=r&st=2024-02-19T06:59:33Z&se=2025-02-20T06:59:00Z&sv=2022-11-02&sig=AoT4C1U1XDa0pwGkID4Wh4NeqwiTFJsHt1mfReVcUfg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0185.JPG?sp=r&st=2024-02-19T06:59:55Z&se=2024-02-20T06:59:55Z&sv=2022-11-02&sig=NorFTX0zWrYpgFZ8eZnZooDNyJbkghtup%2FSClW9Suco%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0186.JPG?sp=r&st=2024-02-19T07:00:28Z&se=2025-02-20T07:00:00Z&sv=2022-11-02&sig=keCI8EdCm7aDSOSyreyG5dSfu8vtqY5rSybZcp%2FuVpk%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0187.JPG?sp=r&st=2024-02-19T07:00:49Z&se=2025-02-20T07:00:00Z&sv=2022-11-02&sig=ZfP7T%2FIC28ReyGJnYgqZnlgn19wyl6ie5SYOznZ58Qo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0188.JPG?sp=r&st=2024-02-19T07:01:09Z&se=2024-02-20T07:01:09Z&sv=2022-11-02&sig=bIq9xCazpwcllToCm%2FRV8s94Z39DSnxP7RNXCmtqYBI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0189.JPG?sp=r&st=2024-02-19T07:01:24Z&se=2025-02-20T07:01:00Z&sv=2022-11-02&sig=Qqd1T99YDm%2BY7KobriV1aAZGmLnNWmink3FGzDKgQ%2Bw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0190.JPG?sp=r&st=2024-02-19T07:01:51Z&se=2025-02-20T07:01:00Z&sv=2022-11-02&sig=kILD%2Bi39dNEtMHnmNUgE5EA4sYTG3pq0o2GiC63Zzz4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0191.JPG?sp=r&st=2024-02-19T07:02:09Z&se=2025-02-20T07:02:00Z&sv=2022-11-02&sig=sqMtYF3v08768RpwovPu1b4RllsfbS%2BxY%2FMfMlQZ94A%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0192.JPG?sp=r&st=2024-02-19T07:02:25Z&se=2025-02-20T07:02:00Z&sv=2022-11-02&sig=6b3Ye9WAWl3s3qBpAByfZHJcDCihtkN98bggbn7Q9vg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0193.JPG?sp=r&st=2024-02-19T07:03:32Z&se=2025-02-20T07:03:00Z&sv=2022-11-02&sig=Px0QU2WfeZiNlUSng1LckF%2FLCX0%2Fwpb2G08cEl0CJSI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0194.JPG?sp=r&st=2024-02-19T07:04:36Z&se=2025-02-20T07:04:00Z&sv=2022-11-02&sig=zKbgvpfdYovxzU%2Bmyo09c1zH7bTNgz4mcrAUYAQmi0o%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0195.JPG?sp=r&st=2024-02-19T07:05:03Z&se=2025-02-20T07:05:00Z&sv=2022-11-02&sig=SukyEufOr02cC4jvQw5zxIR3Qsex7ckUcNvoj3nW3O0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0196.JPG?sp=r&st=2024-02-19T07:05:19Z&se=2025-02-20T07:05:00Z&sv=2022-11-02&sig=1lT%2BZBGRYig5OH9l9n2eOmU7jev%2Fcz716kUwNWW45cs%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0197.JPG?sp=r&st=2024-02-19T07:16:33Z&se=2025-02-20T07:16:00Z&sv=2022-11-02&sig=Yg6WVWZl5oTzpsRNqV9TKnWWBrLePHMQmSoJQT8MNDY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0198.JPG?sp=r&st=2024-02-19T07:16:52Z&se=2025-02-20T07:16:00Z&sv=2022-11-02&sig=i7IPJaqnJBwro1IvtFWk0Jre8%2B4WmiJehMlNMMo53YA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0199.JPG?sp=r&st=2024-02-19T07:17:15Z&se=2025-02-20T07:17:00Z&sv=2022-11-02&sig=NfUqggLdo4fiHesso2RvIh8yD3CUiJkebVYtDQ7WS50%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0200.JPG?sp=r&st=2024-02-19T07:18:01Z&se=2025-02-20T07:18:00Z&sv=2022-11-02&sig=t8YVhNE6lv5ZfMaNr2tt5R6PF%2Fg2VTilIFfJxVzTBj0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0201.JPG?sp=r&st=2024-02-19T07:18:21Z&se=2025-02-20T07:18:00Z&sv=2022-11-02&sig=3LGIO%2FS1okZvLEcO6MoJiecrFsWWkL13xwMuHyxpEQw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0202.JPG?sp=r&st=2024-02-19T07:18:43Z&se=2025-02-20T07:18:00Z&sv=2022-11-02&sig=vfhK1w2G6CTPV90gvXzSFFAYTj80jGrPN%2BzLdAxxZXU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0203.JPG?sp=r&st=2024-02-19T07:19:03Z&se=2025-02-20T07:19:00Z&sv=2022-11-02&sig=AKAqoSudIrBJuRJYRsIqc1GoK8xjhdtEa8wW%2FB6AnyU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0204.JPG?sp=r&st=2024-02-19T07:19:27Z&se=2025-02-20T07:19:00Z&sv=2022-11-02&sig=8QsXZgsX%2BbE5RQyQz3kB8ClEXDEEfv1ojhtHUu%2BhnCk%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0205.JPG?sp=r&st=2024-02-19T07:19:42Z&se=2025-02-20T07:19:00Z&sv=2022-11-02&sig=8UscxVeZHSOJQ4%2BPkk4pyn6dWlV%2BUwuKOtPjnZzH%2BfQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0206.JPG?sp=r&st=2024-02-19T07:20:02Z&se=2025-02-20T07:20:00Z&sv=2022-11-02&sig=qpEHEXXzQH4hIZES1bzU66s3DgiMU2FTVHw%2Fp1F8syI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0207.JPG?sp=r&st=2024-02-19T07:21:30Z&se=2025-02-20T07:21:00Z&sv=2022-11-02&sig=9tZc%2BCQL3J9VnoasITVDNKrWmVUyiUdArXIwAyg9Dzc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0208.JPG?sp=r&st=2024-02-19T07:21:57Z&se=2025-02-20T07:21:00Z&sv=2022-11-02&sig=aW9IchpDzt92z3yn35nmpY%2BP4aGFQEYfCcId5duHWeE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0209.JPG?sp=r&st=2024-02-19T07:22:16Z&se=2025-02-20T07:22:00Z&sv=2022-11-02&sig=5PkFn8QxuiK4vzKWzQFPN2c2V7lhilDSOhbduFKhlHA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0210.JPG?sp=r&st=2024-02-19T07:22:34Z&se=2025-02-20T07:22:00Z&sv=2022-11-02&sig=6WSwSBLa5FTNqSJHXRu%2BKQpqjEfWdhvZC0tq%2BFE0pto%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0211.JPG?sp=r&st=2024-02-19T07:22:52Z&se=2025-02-20T07:22:00Z&sv=2022-11-02&sig=WQyKhn%2F2jfoRBmIvD20BmkTXkQJEeaZlu15uDUQD3C4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0212.JPG?sp=r&st=2024-02-19T07:23:08Z&se=2025-02-20T07:23:00Z&sv=2022-11-02&sig=mIFaEwlB64lY5UPRZMUe0H5md8NcJUzfIlo9zDsOLNE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0213.JPG?sp=r&st=2024-02-19T07:23:28Z&se=2025-02-20T07:23:00Z&sv=2022-11-02&sig=SmU4PS3bZ2%2BqlldnQmri6Us%2BJ096Wz1hRYa9%2BPRK%2FtQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0214.JPG?sp=r&st=2024-02-19T07:24:25Z&se=2025-02-20T07:24:00Z&sv=2022-11-02&sig=mxAUNG5Vrpc5BI6xryk%2By83oNRQDuq1DzoS0JPrJhdA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0215.JPG?sp=r&st=2024-02-19T07:24:55Z&se=2025-02-20T07:24:00Z&sv=2022-11-02&sig=7LNg6CJPtpswJxmCVHefVppDi4eypQ5lRbQG7bdjBs4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0216.JPG?sp=r&st=2024-02-19T07:25:12Z&se=2025-02-20T07:25:00Z&sv=2022-11-02&sig=UV6Max6Ao3ODSLaclJ0OLzDc3g%2BYi8PJQgkKvtB7u74%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0217.JPG?sp=r&st=2024-02-19T07:25:33Z&se=2025-02-20T07:25:00Z&sv=2022-11-02&sig=yhITBPd17E%2FjCykuFhlyu6mtykTXPt2L7S%2FuyxHTxQE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0218.JPG?sp=r&st=2024-02-19T07:39:05Z&se=2025-02-20T07:39:00Z&sv=2022-11-02&sig=10616C09%2BZY3iL9ooBwU%2BWL1J8syUueNMK2H3sL3tbY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0219.JPG?sp=r&st=2024-02-19T07:39:26Z&se=2025-02-20T07:39:00Z&sv=2022-11-02&sig=nfCQA6E0oPUYYixALsAjiJE2Xion3onylAoLQw7L6Ws%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0220.JPG?sp=r&st=2024-02-19T07:40:38Z&se=2025-02-20T07:40:00Z&sv=2022-11-02&sig=eTCRuA2fMuY4ngZ8G8ls7XN4cQYanbEifHpZ%2BJK83eU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0221.JPG?sp=r&st=2024-02-19T07:41:05Z&se=2025-02-20T07:41:00Z&sv=2022-11-02&sig=EfEBwmYqeq43If9%2Fkuj%2FVRXufqQ8rJTD4ih2pADe3zw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0222.JPG?sp=r&st=2024-02-19T07:41:24Z&se=2025-02-20T07:41:00Z&sv=2022-11-02&sig=nJ3bbXy0K4vjpfCyg2G0pPS8sHW%2FJUwWXuLvAOxSe4c%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0223.JPG?sp=r&st=2024-02-19T07:42:26Z&se=2025-02-20T07:42:00Z&sv=2022-11-02&sig=VqlsENTJQ0b1sZqplhMq5iIxOLi4A%2FTVV8KVcWRPZ60%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0224.JPG?sp=r&st=2024-02-19T07:42:48Z&se=2025-02-20T07:42:00Z&sv=2022-11-02&sig=12rtjrciwIUOSXDotUTrMzuPTtFzzguu2qeVQKWQ5bg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0225.JPG?sp=r&st=2024-02-19T07:43:16Z&se=2025-02-20T07:43:00Z&sv=2022-11-02&sig=x7WmF600GJVc7jazNBeD8QVYjRqDQmxAhntdO3K8r1w%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0226.JPG?sp=r&st=2024-02-19T07:43:32Z&se=2025-02-20T07:43:00Z&sv=2022-11-02&sig=hkfJyqv3byt75eMZLlF6k1RdVPm%2BtNi7RKlVD4Al5dI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0227.JPG?sp=r&st=2024-02-19T07:44:09Z&se=2025-02-20T07:44:00Z&sv=2022-11-02&sig=vS9OuDCiGf0tYl1Pd547MMxd6z5uhL4j9hLpsFCCWW0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0228.JPG?sp=r&st=2024-02-19T07:44:25Z&se=2025-02-20T07:44:00Z&sv=2022-11-02&sig=KLGcCCh%2Bo1gViZeKDHodr%2BEFU0POsSmqzLLSfbxC6Io%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0229.JPG?sp=r&st=2024-02-19T07:44:47Z&se=2025-02-20T07:44:00Z&sv=2022-11-02&sig=th7PqJg6ig4Z0b8zo4TOboomyMPumkmOrA71zJT0pSo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0230.JPG?sp=r&st=2024-02-19T07:45:06Z&se=2025-02-20T07:45:00Z&sv=2022-11-02&sig=VAran8py97Il2%2BnnW1Q%2Bp0w93sMEiY1HvC0G%2FAMwPNA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0231.JPG?sp=r&st=2024-02-19T07:45:26Z&se=2025-02-20T07:45:00Z&sv=2022-11-02&sig=REVE1jlMkhjIipBljqOVZh9IrUHQXjINeopn%2Ftzrrus%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0232.JPG?sp=r&st=2024-02-19T07:45:51Z&se=2025-02-20T07:45:00Z&sv=2022-11-02&sig=8M3hLtA2Kt4l6g7LZ1rCGUIumjr8k%2BMO5ZFYJJIB%2BEc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0233.JPG?sp=r&st=2024-02-19T07:46:08Z&se=2025-02-20T07:46:00Z&sv=2022-11-02&sig=4Crlm89v9TjuveFssBq%2FD8TDL2U%2FZ2H6r4susKi8AzE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0234.JPG?sp=r&st=2024-02-19T07:46:29Z&se=2025-02-20T07:46:00Z&sv=2022-11-02&sig=3Mlow0lsMLXFGLK2Vu1jQpLKESyooJzdqp1f8PmC8ts%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0235.JPG?sp=r&st=2024-02-19T07:46:45Z&se=2025-02-20T07:46:00Z&sv=2022-11-02&sig=ELxvszPzhFpBbOcyOAEsg59uqnsA5xhtHNgWx%2FWt0zU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0236.JPG?sp=r&st=2024-02-19T07:47:18Z&se=2025-02-20T07:47:00Z&sv=2022-11-02&sig=oHxEPoY4T1W9kA7sp9NfOQqG%2FegR2BLqXv5GIph2KSg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0237.JPG?sp=r&st=2024-02-19T07:47:38Z&se=2025-02-20T07:47:00Z&sv=2022-11-02&sig=8F4CdPG8SwlzgyCRm2ygOkvOT5d1JFIjUMQRIA8%2BGnU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0238.JPG?sp=r&st=2024-02-19T07:47:57Z&se=2025-02-20T07:47:00Z&sv=2022-11-02&sig=usu41jcBfPUh6EP3VncgOy5TrkkBEF7BZ6TfZN%2BE9lw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0239.JPG?sp=r&st=2024-02-19T07:48:18Z&se=2025-02-20T07:48:00Z&sv=2022-11-02&sig=0c8Edqy6VP3qDiCOIoMYvOpoXsvil8J1w%2BrH6dlXANw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0240.JPG?sp=r&st=2024-02-19T07:48:36Z&se=2025-02-20T07:48:00Z&sv=2022-11-02&sig=0kCebwBLXzgqH0oZRrUcbk0FnWjfQyUifGw%2BYMobD9o%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0241.JPG?sp=r&st=2024-02-19T08:10:04Z&se=2025-02-20T08:10:00Z&sv=2022-11-02&sig=Vf70Rcc%2FlGCsGXmXllw4w5rpwMj6T%2FyUS9sacSsQ1zE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0242.JPG?sp=r&st=2024-02-19T07:49:10Z&se=2025-02-20T07:49:00Z&sv=2022-11-02&sig=2et9EL4A7sulq9JMD9xYhvZ8hRKJawk3T0yUZNSmTD4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0243.JPG?sp=r&st=2024-02-19T07:49:26Z&se=2025-02-20T07:49:00Z&sv=2022-11-02&sig=SRY0usZ7kUfs5gM0epSn%2Fqjc6q4jEXWzXYPPavDfD%2BE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0245.JPG?sp=r&st=2024-02-19T07:49:39Z&se=2025-02-20T07:49:00Z&sv=2022-11-02&sig=gaptg00JKYfDZ6q8YdD59xaRuN5iZfPkl3PY572W3oE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0246.JPG?sp=r&st=2024-02-19T07:49:55Z&se=2025-02-20T07:49:00Z&sv=2022-11-02&sig=obZSCD3BxAdScu485mL55IHxKMXMxgmaGMg6X1ZUfSo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0247.JPG?sp=r&st=2024-02-19T07:50:13Z&se=2025-02-20T07:50:00Z&sv=2022-11-02&sig=12HLCmcVxdvP0iO%2BZHTq5U8saermmeJ%2FaOuUhJqxMuM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0248.JPG?sp=r&st=2024-02-19T07:50:34Z&se=2025-02-20T07:50:00Z&sv=2022-11-02&sig=r7pgjyXxb62vLnHvKXSjQMa%2BhZJv84sIH1V%2Bjeo2k3U%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0249.JPG?sp=r&st=2024-02-19T07:50:48Z&se=2024-02-20T07:50:48Z&sv=2022-11-02&sig=UFFYQSlQ%2FJsfvtkdii%2FVq%2Be6H8Re3FtdAqJT%2BIeR5wo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0250.JPG?sp=r&st=2024-02-19T07:51:01Z&se=2025-02-20T07:51:00Z&sv=2022-11-02&sig=4%2BjkAqOLUsp3sFxihF%2BPPKNqTxZr4cFu1I0TU4ZK278%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0251.JPG?sp=r&st=2024-02-19T07:51:14Z&se=2025-02-20T07:51:00Z&sv=2022-11-02&sig=%2BOn9QNLENcHa89%2BEtlEQMcSAjbPB4IGm4pdJ6BehwSc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0252.JPG?sp=r&st=2024-02-19T07:51:33Z&se=2025-02-20T07:51:00Z&sv=2022-11-02&sig=%2Fj7EhNJKvT8qZ%2BbzRc9Q43NX30Zd4gb%2FsUB5iieLNgA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0253.JPG?sp=r&st=2024-02-19T07:51:51Z&se=2025-02-20T07:51:00Z&sv=2022-11-02&sig=D%2B6snNj1WgKfxb9ANytWPK8xh7NB21e4R62d6JU15uU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0254.JPG?sp=r&st=2024-02-19T07:52:10Z&se=2025-02-20T07:52:00Z&sv=2022-11-02&sig=9ky%2F%2BgiwumTy%2B9tZFrA1rE6undPw7uvSeggK0%2BAKYFo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0255.JPG?sp=r&st=2024-02-19T07:52:29Z&se=2025-02-20T07:52:00Z&sv=2022-11-02&sig=8tA%2FXm1Bmg9iK3SwPMXK4XhwTs2WsxKW6Te7CXP2Ygo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0256.JPG?sp=r&st=2024-02-19T07:52:44Z&se=2025-02-20T07:52:00Z&sv=2022-11-02&sig=PKb8lyLyZYj105tqprqaE81Im65XDw1u0mfDN1jL0Io%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0257.JPG?sp=r&st=2024-02-19T07:53:06Z&se=2025-02-20T07:53:00Z&sv=2022-11-02&sig=%2BwW0y6yv198nqRoCjFUdJsl4V8QhB8r%2FWY2sNb2%2FSr4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0258.JPG?sp=r&st=2024-02-19T07:53:21Z&se=2025-02-20T07:53:00Z&sv=2022-11-02&sig=mfMenfBd7SDwqXFEbD3QAWgt1ZFy4gaczjPZEV4B8v8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0259.JPG?sp=r&st=2024-02-19T07:53:39Z&se=2025-02-20T07:53:00Z&sv=2022-11-02&sig=6n%2BjVFzlGR%2B8HzJLaqEYoDylPIhg363GtzjuDOz%2B4Kc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0260.JPG?sp=r&st=2024-02-19T08:11:18Z&se=2025-02-20T08:11:00Z&sv=2022-11-02&sig=s0XdJkUd9fvevC0AjZcktpp9kLW%2FNsT3DWQKZzFbaTA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0261.JPG?sp=r&st=2024-02-19T07:54:12Z&se=2025-02-20T07:54:00Z&sv=2022-11-02&sig=%2Bt2WbaFAGf4hGTb12CJpA64xXw5iKclimRi9FDdUmx4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0262.JPG?sp=r&st=2024-02-19T08:11:53Z&se=2025-02-20T08:11:00Z&sv=2022-11-02&sig=ESVTBVUofdTGthOtjuq8miX65rT8IIErXjPlb14Yfsg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0263.JPG?sp=r&st=2024-02-19T07:54:47Z&se=2025-02-20T07:54:00Z&sv=2022-11-02&sig=AzdWS2AQE8UDXalUdinBFXNYfxivQD4ik4KMTUbdi6o%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0264.JPG?sp=r&st=2024-02-19T07:55:04Z&se=2025-02-20T07:55:00Z&sv=2022-11-02&sig=X47cRuC39WmfUdjI41iMShUILBQk1lEeccviMXHaRLo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0265.JPG?sp=r&st=2024-02-19T07:55:25Z&se=2025-02-20T07:55:00Z&sv=2022-11-02&sig=47nGn5znU1TuM0T33YbIlAYid8V61nHULRAd%2FQlK4mE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0266.JPG?sp=r&st=2024-02-19T07:55:38Z&se=2025-02-20T07:55:00Z&sv=2022-11-02&sig=4H5d2N6dIn3WUpeqLzUY9PiyBHOrxPRqBm%2FRBx3gO1w%3D&sr=fG" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0267.JPG?sp=r&st=2024-02-19T07:55:57Z&se=2025-02-20T07:55:00Z&sv=2022-11-02&sig=ixrDrVWPyRgpflZsVb6V%2FC71uuFUWZ1HuZSHvVVwudU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0268.JPG?sp=r&st=2024-02-19T07:56:19Z&se=2025-02-20T07:56:00Z&sv=2022-11-02&sig=44I5NkyxOpV7VOD9yox65reVL%2B1sG%2BYmZahvV4J86%2FY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0269.JPG?sp=r&st=2024-02-19T07:56:47Z&se=2025-02-20T07:56:00Z&sv=2022-11-02&sig=ueteh4oI6TAdtO7JdnX2uqdm3c8bCLSXzGm3vuXHR8g%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0270.JPG?sp=r&st=2024-02-19T07:57:09Z&se=2025-02-20T07:57:00Z&sv=2022-11-02&sig=7VPFwLXJQBQ2HR7ak%2BEOvaPxj838bkk9y2dK4jdvwjQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0271.JPG?sp=r&st=2024-02-19T07:57:35Z&se=2025-02-20T07:57:00Z&sv=2022-11-02&sig=vf7VOHyblttmRuJxv%2FnJ3D1ZJOhHxJE7URim3O91Q6U%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0272.JPG?sp=r&st=2024-02-19T07:57:52Z&se=2025-02-20T07:57:00Z&sv=2022-11-02&sig=EtWPygby0vkx9QTq54u9zkgS2b%2B80GQnfY%2BbA%2BSEdF0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0273.JPG?sp=r&st=2024-02-19T07:58:09Z&se=2025-02-20T07:58:00Z&sv=2022-11-02&sig=IAJ7dMb%2BFebWEHNhXNWmmiGns%2BuMigU1iUBXtTdA%2FaI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0274.JPG?sp=r&st=2024-02-19T07:58:23Z&se=2025-02-20T07:58:00Z&sv=2022-11-02&sig=UU76hIMgfua%2FuugCVcQmMTnJ2IGS06m2wkMUXAsTyjQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0275.JPG?sp=r&st=2024-02-19T07:58:45Z&se=2025-02-20T07:58:00Z&sv=2022-11-02&sig=MziCw2XfGoDLzmFFtn0BuldTgHqTDWP94rAneg1c7IE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0276.JPG?sp=r&st=2024-02-19T07:59:02Z&se=2025-02-20T07:59:00Z&sv=2022-11-02&sig=3BM1C95f%2FUp4RKLzEHTJ%2BWZwDYN74A%2F1%2Blu8YK2Pxs4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0277.JPG?sp=r&st=2024-02-19T07:59:23Z&se=2025-02-20T07:59:00Z&sv=2022-11-02&sig=xXWKm63A3xv9a1RnKrwUs8k0ZqNOAwYIBziDsfvX%2FIA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0278.JPG?sp=r&st=2024-02-19T07:59:43Z&se=2025-02-20T07:59:00Z&sv=2022-11-02&sig=xG74EFgGD%2BFq8eRwzOH8c0%2FfBCFu7j9U9HDKbzBL0Pw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0279.JPG?sp=r&st=2024-02-19T08:00:06Z&se=2025-02-20T08:00:00Z&sv=2022-11-02&sig=VEllxfwOrKwmGq9yXzvQ8M9l%2BU6oCAkw3dNJd2akI%2Bc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0280.JPG?sp=r&st=2024-02-19T08:00:22Z&se=2025-02-20T08:00:00Z&sv=2022-11-02&sig=aPE95qXARJNbddEuWIsKONeioXpPkyhxeWYmJaQhAMc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0281.JPG?sp=r&st=2024-02-19T08:00:39Z&se=2025-02-20T08:00:00Z&sv=2022-11-02&sig=jZQnei4WMkolcCC09%2FRzqYiUrP1tL7BfRtAVL21UqKQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0282.JPG?sp=r&st=2024-02-19T08:00:54Z&se=2025-02-20T08:00:00Z&sv=2022-11-02&sig=py048HzzNyTt8VWonwks1h%2F36xikP%2B%2BcCzZwPf0sjfE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0283.JPG?sp=r&st=2024-02-19T08:01:10Z&se=2025-02-20T08:01:00Z&sv=2022-11-02&sig=QvTvTfO7G8u8zFlmvOzqn3cTLbq3TXAnSwsPTAtI5Hc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0284.JPG?sp=r&st=2024-02-19T08:01:30Z&se=2025-02-20T08:01:00Z&sv=2022-11-02&sig=DN%2B%2BNn7tiS6Zr5bpTx01Ql0PmiSmEltvzY9o5v2DCYE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0285.JPG?sp=r&st=2024-02-19T08:01:47Z&se=2025-02-20T08:01:00Z&sv=2022-11-02&sig=qM9uoRIJL8EYVNoZGjHBIEwu4fM92UDE6sfNsx6pKRE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0286.JPG?sp=r&st=2024-02-19T08:14:15Z&se=2025-02-20T08:14:00Z&sv=2022-11-02&sig=WGJvJuAqxdRQGvw89TSYoipJnsMc%2FOBmqKpO1k0flUo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0287.JPG?sp=r&st=2024-02-19T08:14:34Z&se=2025-02-20T08:14:00Z&sv=2022-11-02&sig=I9mFYAn6Uxvl0M5JWhfXHK%2FnyhMnHXWzNFJa39BeTr0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0288.JPG?sp=r&st=2024-02-19T08:16:07Z&se=2024-02-20T08:16:07Z&sv=2022-11-02&sig=TS357eUM7OOGwoAz3M3I%2F2jue5offnlsEAZQ%2BfKAhvI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0289.JPG?sp=r&st=2024-02-19T08:16:22Z&se=2025-02-20T08:16:00Z&sv=2022-11-02&sig=eLgvD2oFTTmAmCjsNlRPox8T67ESntXEqdxt0lr8%2Fz8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0290.JPG?sp=r&st=2024-02-19T08:16:42Z&se=2025-02-20T08:16:00Z&sv=2022-11-02&sig=bKLJfv3UluI9RNV%2B4vreRq85tZ12yk6Nw7a3%2B2XuZyk%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0291.JPG?sp=r&st=2024-02-19T08:17:05Z&se=2025-02-20T08:17:00Z&sv=2022-11-02&sig=UTQmkG84Kgsoo5PxO90c4Ec6a7T1UoPJ3e09ZGfb1uY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0292.JPG?sp=r&st=2024-02-19T08:17:24Z&se=2025-02-20T08:17:00Z&sv=2022-11-02&sig=ZEOPDQVY2k6%2F5Y7L%2BlfubBwedO7mWYdTbUUujr4uys0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0293.JPG?sp=r&st=2024-02-19T08:17:43Z&se=2025-02-20T08:17:00Z&sv=2022-11-02&sig=L9hFk0UHyFzMX9tjM5%2F7rHz2VcXg5FG8s6QIjtsbA60%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0294.JPG?sp=r&st=2024-02-19T08:18:03Z&se=2025-02-20T08:18:00Z&sv=2022-11-02&sig=vGGH7z8HSevApYDy5ezzXKSVoymvqPld6ufOmp6YbKo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0295.JPG?sp=r&st=2024-02-19T08:18:22Z&se=2025-02-20T08:18:00Z&sv=2022-11-02&sig=BhLAl%2FCD9jxFNP9j04aiVWyUhgBFUggfq2X7H2CDaFY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0296.JPG?sp=r&st=2024-02-19T08:18:41Z&se=2025-02-20T08:18:00Z&sv=2022-11-02&sig=yB7AB17Ugt9ESwbwBH7IFrW7q2MvdgL6PqgGfVIiIMc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0297.JPG?sp=r&st=2024-02-19T08:19:00Z&se=2025-02-20T08:19:00Z&sv=2022-11-02&sig=bRYFttX5NQ%2B7kaiKPvGVbxlXGdkp4ESkHZ2LtVs7HVo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0299.JPG?sp=r&st=2024-02-19T08:19:28Z&se=2025-02-20T08:19:00Z&sv=2022-11-02&sig=qYRsGbjdUQBwqnuPAPjwo7W5MbmdTNNuDXgY5G1KkNY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0300.JPG?sp=r&st=2024-02-19T08:19:50Z&se=2025-02-20T08:19:00Z&sv=2022-11-02&sig=v3MQQ6exN%2Bt%2BrQPWHvWXLAxg%2BL22Zo7%2F6QOVR9h2goA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0301.JPG?sp=r&st=2024-02-19T08:20:14Z&se=2025-02-20T08:20:00Z&sv=2022-11-02&sig=SXLvdco65Db76rnMSqINR28XuYYIoMiUm6W5zA7HiAs%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0302.JPG?sp=r&st=2024-02-19T08:20:34Z&se=2024-02-20T08:20:34Z&sv=2022-11-02&sig=13iqFSiOJhiVC7l3%2BcjwooBV3cgAScAkASB8hTtCB%2FM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0303.JPG?sp=r&st=2024-02-19T08:20:48Z&se=2025-02-20T08:20:00Z&sv=2022-11-02&sig=Y2bnRjTdLN0iDus369ven0XS5ixkXWepimn5jY5n8v0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0304.JPG?sp=r&st=2024-02-19T08:21:08Z&se=2025-02-20T08:21:00Z&sv=2022-11-02&sig=qjwUhg6YBh%2FMDWb1L9GECyC1oGXDYufIXq1VDINXpRo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0305.JPG?sp=r&st=2024-02-19T08:21:28Z&se=2025-02-20T08:21:00Z&sv=2022-11-02&sig=bopOXP15cFgk%2BXyT26buzxJOQAZ6lgSumBar3YY2nrg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0306.JPG?sp=r&st=2024-02-19T08:21:52Z&se=2025-02-20T08:21:00Z&sv=2022-11-02&sig=lUpRC9vZmjnVN1V1sq3EYuY3gf13q0zC0%2FYOAUJcSKo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0307.JPG?sp=r&st=2024-02-19T08:22:10Z&se=2025-02-20T08:22:00Z&sv=2022-11-02&sig=4MWPqj0L5Xl8vT0TPVBwSaff8SK1NiyMFAPXnqW03hU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0308.JPG?sp=r&st=2024-02-19T08:22:28Z&se=2025-02-20T08:22:00Z&sv=2022-11-02&sig=7Pq1JSX1Tpon%2FqvyfH%2FUMvwm6EppyoHmpMOpLVdbdXI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0309.JPG?sp=r&st=2024-02-19T08:22:46Z&se=2025-02-20T08:22:00Z&sv=2022-11-02&sig=VVgcZnoWBMEyWVrRYDZjd1GTacp9VmseYsSxkGYaGoY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0310.JPG?sp=r&st=2024-02-19T08:23:04Z&se=2025-02-20T08:23:00Z&sv=2022-11-02&sig=n0DpObRpSoGLq0hFfGwMkwhsotsHjlphF4UWaQo%2Fgl8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0311.JPG?sp=r&st=2024-02-19T08:23:28Z&se=2025-02-20T08:23:00Z&sv=2022-11-02&sig=yYbPHxrJj2Ww04iDNeaBZTJWMOAbREW8WV3uCiCQrcM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0312.JPG?sp=r&st=2024-02-19T08:23:48Z&se=2025-02-20T08:23:00Z&sv=2022-11-02&sig=VcWILfim6wDk5PQv8QQAsl8NsLF0fynnuB2s615oC9Q%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0313.JPG?sp=r&st=2024-02-19T08:24:09Z&se=2025-02-20T08:24:00Z&sv=2022-11-02&sig=9zjhSoLj0Wr5SVbapZmbe54C%2FCTo0XGAR5VaF5tpER8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0314.JPG?sp=r&st=2024-02-19T08:24:33Z&se=2025-02-20T08:24:00Z&sv=2022-11-02&sig=%2Bibf6wvZbzb3XfC3lLGb2lCEHZnB8MDmlwgD3VMtUqA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0315.JPG?sp=r&st=2024-02-19T08:24:55Z&se=2025-02-20T08:24:00Z&sv=2022-11-02&sig=F0WQ%2B3UmgfwZuBSU7mQoVAY261oSYdHd6Ve%2BgePY208%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0316.JPG?sp=r&st=2024-02-19T08:25:14Z&se=2025-02-20T08:25:00Z&sv=2022-11-02&sig=1RH1C98aZsn4UFB8%2FZeM6IuLpeTQqNumYnJNuiXs3DA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0317.JPG?sp=r&st=2024-02-19T08:25:34Z&se=2025-02-20T08:25:00Z&sv=2022-11-02&sig=yikKRimNhzPR8CIrbNYLvmo2vWfr6MvIz1oWFFcwi8E%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0318.JPG?sp=r&st=2024-02-19T08:25:57Z&se=2025-02-20T08:25:00Z&sv=2022-11-02&sig=4x9VDfNFSNX6N%2BDBJAQ2PlHx35drvfJczDh08oSBa1Q%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0319.JPG?sp=r&st=2024-02-19T08:26:10Z&se=2025-02-20T08:26:00Z&sv=2022-11-02&sig=OfwuzJZCxwUcPDrFg2VOB37%2FSONB9x1A65NK428Lxm0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0320.JPG?sp=r&st=2024-02-19T08:26:29Z&se=2025-02-20T08:26:00Z&sv=2022-11-02&sig=Yyn%2BRyD8SMWwrDh88ATol%2BmGqbrX%2BCjzjVPYPDNHVmQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0321.JPG?sp=r&st=2024-02-19T08:28:26Z&se=2025-02-20T08:28:00Z&sv=2022-11-02&sig=Ljym3tyBZFErsMZvt4WEfShYtt9MP9ah9SRTeCI3r%2FM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0322.JPG?sp=r&st=2024-02-19T08:28:46Z&se=2025-02-20T08:28:00Z&sv=2022-11-02&sig=MsujAygVxoiJ0CZqunpqPHpPAFnCq4fMvH8p0fy%2Bc9U%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0323.JPG?sp=r&st=2024-02-19T08:29:07Z&se=2025-02-20T08:29:00Z&sv=2022-11-02&sig=ybnUt2rlxIt%2Fxh6oueEsRlbOypmWw6ES0UdDbU9d698%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0324.JPG?sp=r&st=2024-02-19T08:31:43Z&se=2025-02-20T08:31:00Z&sv=2022-11-02&sig=pQ1i0gEj1dLMnK0pSkVqcOmZkiuephLDhkuLE9MwIVI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0325.JPG?sp=r&st=2024-02-19T08:32:02Z&se=2025-02-20T08:32:00Z&sv=2022-11-02&sig=8U5W8g8JfdBMn1yIo3A5sg9uHKPV972wluzNefR8dN8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0326.JPG?sp=r&st=2024-02-19T08:32:34Z&se=2025-02-20T08:32:00Z&sv=2022-11-02&sig=5pwGlsfX3fpddCtdQodnLHDkECkirAFN1YLiPQoXLZM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0327.JPG?sp=r&st=2024-02-19T08:32:50Z&se=2025-02-20T08:32:00Z&sv=2022-11-02&sig=GhVv9CY%2BmWLnPGw8GOn%2FHdAhCjq%2FMfuGXzodetazfeg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0328.JPG?sp=r&st=2024-02-19T08:33:13Z&se=2025-02-20T08:33:00Z&sv=2022-11-02&sig=6loPxud6v8mx0Gc7H%2Fx93zgleBxOYXbf%2FUwn55V1RSE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0329.JPG?sp=r&st=2024-02-19T08:33:30Z&se=2025-02-20T08:33:00Z&sv=2022-11-02&sig=OEK192UZwF3lgqlSwKe6nUtOgJ%2BCfT7FtpIVQi7qxkY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0330.JPG?sp=r&st=2024-02-19T08:33:54Z&se=2025-02-20T08:33:00Z&sv=2022-11-02&sig=IOXgTjEqVGHc7T%2FOqs81TeOcb4QgzXrHdn%2BSq1ZH65g%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0331.JPG?sp=r&st=2024-02-19T08:34:09Z&se=2025-02-20T08:34:00Z&sv=2022-11-02&sig=ivCUpXLRN25ywtfRrxX2WgtODovjXm%2FPbP06YvOKbHU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0332.JPG?sp=r&st=2024-02-19T08:34:28Z&se=2025-02-20T08:34:00Z&sv=2022-11-02&sig=2dEEXa15BxGI2j4%2BIcAj%2BMOB3QADGfn66IVvmJ4CH%2BY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0333.JPG?sp=r&st=2024-02-19T08:34:49Z&se=2025-02-20T08:34:00Z&sv=2022-11-02&sig=%2BbUxsStWtiBIQ0RYLokbE721DZKhje%2FHQddC5NpPrFQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0334.JPG?sp=r&st=2024-02-19T08:35:06Z&se=2025-02-20T08:35:00Z&sv=2022-11-02&sig=IkWEbuVYeIgrkPc8c5QXc9dj%2Br5es%2BG%2Bh5r3wXFUAEU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0335.JPG?sp=r&st=2024-02-19T08:35:26Z&se=2025-02-20T08:35:00Z&sv=2022-11-02&sig=mzwO1NQOGj4AUFSY%2BcW5fk%2Bdq5QsmCwe6VeAes%2F635Y%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0336.JPG?sp=r&st=2024-02-19T08:35:41Z&se=2025-02-20T08:35:00Z&sv=2022-11-02&sig=fS82vGE1MrwwDHQB3bAtYMJDztRNIWl3731gYBY6v2Y%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0337.JPG?sp=r&st=2024-02-19T08:35:59Z&se=2025-02-20T08:35:00Z&sv=2022-11-02&sig=5%2Bc%2BkBj5at0736agXlRmK%2F5p4%2F8EhWk%2FkHNyIT%2B3lkM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0338.JPG?sp=r&st=2024-02-19T08:36:24Z&se=2025-02-20T08:36:00Z&sv=2022-11-02&sig=yG%2FMBpnDKhh4yAV1uZbeN%2BAZUn1OlyGalK5aN6i9H34%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0339.JPG?sp=r&st=2024-02-19T08:36:39Z&se=2025-02-20T08:36:00Z&sv=2022-11-02&sig=o2F1uIF0c6TTE3TF9dlqtGzRrDast3FbU8djPwP4sy0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0340.JPG?sp=r&st=2024-02-19T08:36:58Z&se=2025-02-20T08:36:00Z&sv=2022-11-02&sig=35K%2BGfHEfwP4CT8zduPRvxseSPgKjxowYg4fjtAbYP4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0341.JPG?sp=r&st=2024-02-19T08:37:15Z&se=2025-02-20T08:37:00Z&sv=2022-11-02&sig=b6tshdd7iJB8gRd%2FBMjInqvIeBjbnlzAPHp5rzioFGM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0342.JPG?sp=r&st=2024-02-19T08:37:31Z&se=2025-02-20T08:37:00Z&sv=2022-11-02&sig=OKFhNRD1YcpCRgbzhtmfZLkliEsG%2FsljZCifvlbebLQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0343.JPG?sp=r&st=2024-02-19T08:38:02Z&se=2025-02-20T08:38:00Z&sv=2022-11-02&sig=veQE7KD1sO2MdnM%2Bb33DW64Zut%2FIGl5zJ14JwN0tOUU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0344.JPG?sp=r&st=2024-02-19T08:38:18Z&se=2025-02-20T08:38:00Z&sv=2022-11-02&sig=QQ%2FaFLWjTCrZS9o00IFUSUS2O5nSNnnJdBHEOQnADo4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0345.JPG?sp=r&st=2024-02-19T08:38:34Z&se=2025-02-20T08:38:00Z&sv=2022-11-02&sig=hnhUTTVG6Lgxwk%2FVLlrJWjazLvhpAi%2BxSIs5KlopzXg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0346.JPG?sp=r&st=2024-02-19T08:38:50Z&se=2025-02-20T08:38:00Z&sv=2022-11-02&sig=GxVs4mg%2FhNQttQ2EpppUdDaxCk7VPj68YnThdRdtyzY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0347.JPG?sp=r&st=2024-02-19T08:39:05Z&se=2025-02-20T08:39:00Z&sv=2022-11-02&sig=6L09pc6AuTL1ZTJq744Ad5BW8TZ22yRYr3Sp5pSVhRM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0348.JPG?sp=r&st=2024-02-19T08:39:21Z&se=2025-02-20T08:39:00Z&sv=2022-11-02&sig=meoZL0xxWLxkxFhpAgxBGt6OXx21i7wgRRKGs%2FHIyS8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0349.JPG?sp=r&st=2024-02-19T08:39:36Z&se=2025-02-20T08:39:00Z&sv=2022-11-02&sig=8Ov7hwx1hF0i4vlXUjqkHfXh34KtG8P2LInIspTEdb0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0350.JPG?sp=r&st=2024-02-19T08:40:03Z&se=2025-02-20T08:40:00Z&sv=2022-11-02&sig=Ymsuu%2F%2BvMUXtX2gvkS7X7NaLEnaYTs%2FmICeHMd7gekc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0351.JPG?sp=r&st=2024-02-19T08:40:21Z&se=2025-02-20T08:40:00Z&sv=2022-11-02&sig=lPNwRW%2BmrYl3VvbOvHuv%2Fssb4rXwqlnR%2BSa7v0hYVyQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0352.JPG?sp=r&st=2024-02-19T08:40:37Z&se=2025-02-20T08:40:00Z&sv=2022-11-02&sig=FXY5az4g36c3aLL4ESSDCwMqdrJybDDvZRY66aXPUxw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0353.JPG?sp=r&st=2024-02-19T08:40:55Z&se=2025-02-20T08:40:00Z&sv=2022-11-02&sig=YMVVE1xxwxMKOti8g19m5mDzxwEoTl0slT3UGMiyNQA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0354.JPG?sp=r&st=2024-02-19T08:41:10Z&se=2025-02-20T08:41:00Z&sv=2022-11-02&sig=JcfPW6kNvvVhUL9r3mspE3DLbRqFKMsqbCXbHXfwzPc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0355.JPG?sp=r&st=2024-02-19T08:41:28Z&se=2025-02-20T08:41:00Z&sv=2022-11-02&sig=sAsH%2B7VjvNEyoMv96k1bjnWKH9n7tqtLfK0dKa9TNF4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0356.JPG?sp=r&st=2024-02-19T08:41:47Z&se=2025-02-20T08:41:00Z&sv=2022-11-02&sig=%2FlutfU4TzkM%2BH0aWeDoNTYCOoZ0VWBDJ5nn%2Fv2B2Cks%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0357.JPG?sp=r&st=2024-02-19T08:42:07Z&se=2025-02-20T08:42:00Z&sv=2022-11-02&sig=eoEU5kmi72M1R4843uAmnpB6O3yiUspwjQYI0u3Qpdc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0358.JPG?sp=r&st=2024-02-19T08:42:24Z&se=2025-02-20T08:42:00Z&sv=2022-11-02&sig=lNvlgUOA7vF3QliTei3OmtVV1fAEfWR6pD5yG3SA7xw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0359.JPG?sp=r&st=2024-02-19T08:42:41Z&se=2025-02-20T08:42:00Z&sv=2022-11-02&sig=UrWb7DLZ9025AeamD0TiTODG9EzIeHkVxK7f7GRkb0I%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0360.JPG?sp=r&st=2024-02-19T08:43:22Z&se=2025-02-20T08:43:00Z&sv=2022-11-02&sig=u8iKCA6%2By93Th1Uc1eieSjwzdgOF3k9GMk3%2FC2blHSA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0361.JPG?sp=r&st=2024-02-19T08:43:38Z&se=2025-02-20T08:43:00Z&sv=2022-11-02&sig=3Qv8VFtEkH5sZOxAunC08ZSXOWhR%2Fx7QfT%2FCYMhT5Y0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0362.JPG?sp=r&st=2024-02-19T08:44:00Z&se=2025-02-20T08:44:00Z&sv=2022-11-02&sig=j13RIWUX40%2FxDswPXVMBw9KGB7nt%2B3toIMhpvdLMafQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0363.JPG?sp=r&st=2024-02-19T08:44:20Z&se=2025-02-20T08:44:00Z&sv=2022-11-02&sig=IZja74djeRaqKHZYwzjywnjmSgkzB8yUWYOw9rUE4mY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0364.JPG?sp=r&st=2024-02-19T08:44:37Z&se=2025-02-20T08:44:00Z&sv=2022-11-02&sig=4WCG9yykIITQZVwUi2PiotkNzEkJOU7t35MazdzsO20%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0365.JPG?sp=r&st=2024-02-19T08:44:55Z&se=2025-02-20T08:44:00Z&sv=2022-11-02&sig=q7jB89UCQtoL1%2Fta102xaXIpVAcAG1W2AJ13BHX80OQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0366.JPG?sp=r&st=2024-02-19T08:45:35Z&se=2025-02-20T08:45:00Z&sv=2022-11-02&sig=nf6UdnsKNr1t5i40AyPm3bE4i7CkH%2FFaqKNTdZ28ZJ0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0367.JPG?sp=r&st=2024-02-19T08:45:51Z&se=2025-02-20T08:45:00Z&sv=2022-11-02&sig=LFSIhuT%2FIkmKjjB3fFyLYIOBAJ601AzW66%2FEqTdbD1k%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0368.JPG?sp=r&st=2024-02-19T08:46:09Z&se=2025-02-20T08:46:00Z&sv=2022-11-02&sig=INUzFt%2Flpa8%2FzK4jy%2BJGf9jshu%2FalrmnAM%2FRddegCvE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0369.JPG?sp=r&st=2024-02-19T08:46:26Z&se=2025-02-20T08:46:00Z&sv=2022-11-02&sig=4Qc3YswImeI59pxN6iMVLxjUvHaC2qAxuQ7D6iMZWNo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0370.JPG?sp=r&st=2024-02-19T08:46:43Z&se=2025-02-20T08:46:00Z&sv=2022-11-02&sig=hynl6vCgnJsCC4mSmrfJdAk9N6MoMy3vlZJKBPrsDRI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0371.JPG?sp=r&st=2024-02-19T08:47:29Z&se=2025-02-20T08:47:00Z&sv=2022-11-02&sig=BxktP1lTMJPfyMY2oQ71iOqSCMc1tTsBRnyLLGIoOUw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0372.JPG?sp=r&st=2024-02-19T08:47:48Z&se=2025-02-20T08:47:00Z&sv=2022-11-02&sig=fc5xhf5laSEJyO%2FC%2FAGEac8gNHEIQ91jMxc7%2BA7%2Bg7w%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0373.JPG?sp=r&st=2024-02-19T08:48:10Z&se=2025-02-20T08:48:00Z&sv=2022-11-02&sig=IMgnzzQYO4ZpPZI8amhG0uKVucCbZypSyOwMMdNfrLw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0374.JPG?sp=r&st=2024-02-19T08:48:27Z&se=2025-02-20T08:48:00Z&sv=2022-11-02&sig=TS%2F3jHT%2FJagN0PZwwzqo0plbvYODYg2Eeny0mBghet8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0375.JPG?sp=r&st=2024-02-19T08:48:50Z&se=2024-02-20T08:48:50Z&sv=2022-11-02&sig=T%2FEecFPmMwNAaqLolStvmq22XVGSgRyUxLUBl4jKb9Y%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0376.JPG?sp=r&st=2024-02-19T08:49:08Z&se=2025-02-20T08:49:00Z&sv=2022-11-02&sig=sYIUtl1GI%2FvMVMr2irwB8mQV%2FIyVMJ9nC26BO%2FJm3PM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0377.JPG?sp=r&st=2024-02-19T08:49:33Z&se=2025-02-20T08:49:00Z&sv=2022-11-02&sig=qMfXqqFgo3GqqfyEnwKfjjk18QagCIYsHIk0CZApCG4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0378.JPG?sp=r&st=2024-02-19T08:50:04Z&se=2025-02-20T08:50:00Z&sv=2022-11-02&sig=aEuetMldzKBlhzrREf0Y7slB%2Fq52V8W2kYEZ6K%2BWISg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0379.JPG?sp=r&st=2024-02-19T08:50:21Z&se=2025-02-20T08:50:00Z&sv=2022-11-02&sig=qIFLZYmBW7k%2F3uJPhC6zxSVQnmJwowEM6IkhdQXtRl0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0380.JPG?sp=r&st=2024-02-19T08:50:41Z&se=2025-02-20T08:50:00Z&sv=2022-11-02&sig=yXUZqxSufZZL8O1W1Xr63OnhFqhy3zGvFo%2B3gfAoCxE%3D&sr=f" alt="Image 32">
+                <img src="ihttps://mission100ade04adls.file.core.windows.net/ga1/DJI_0381.JPG?sp=r&st=2024-02-19T08:51:16Z&se=2025-02-20T08:51:00Z&sv=2022-11-02&sig=HVGY%2FRJHYm2rWMLfpgyoCJIANZcZuHuNaDPd13H5lHU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0382.JPG?sp=r&st=2024-02-19T08:51:40Z&se=2025-02-20T08:51:00Z&sv=2022-11-02&sig=wk8k6w2H1J7L9u9UKxnEJHVM991gXDhRNOs1QPIuZT8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0383.JPG?sp=r&st=2024-02-19T08:51:58Z&se=2025-02-20T08:51:00Z&sv=2022-11-02&sig=9zDSHaCvD3xd8QZI%2BH0Oh3ZFXvRDlJ9vtokOJWy%2FMl8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0384.JPG?sp=r&st=2024-02-19T08:52:15Z&se=2025-02-20T08:52:00Z&sv=2022-11-02&sig=pXswJeywXv%2B6Uz6kgojPYuU0GTZT%2BgcxwqvPVbbk%2Foc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0385.JPG?sp=r&st=2024-02-19T08:52:46Z&se=2025-02-20T08:52:00Z&sv=2022-11-02&sig=lt7adTjxk9Eat0rJ3uxK6CI3McyrHlGT9pmIeuHoMtg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0386.JPG?sp=r&st=2024-02-19T08:53:01Z&se=2025-02-20T08:53:00Z&sv=2022-11-02&sig=AYGocohF%2BZQi46XUeBjz6LBJpejhqepFmyQBIo5O0wQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0387.JPG?sp=r&st=2024-02-19T08:53:20Z&se=2025-02-20T08:53:00Z&sv=2022-11-02&sig=LCUiDKhdTBBkHbCCZQ03joIYGs%2FBxLUaWXwndRAaQsg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0388.JPG?sp=r&st=2024-02-19T08:53:38Z&se=2025-02-20T08:53:00Z&sv=2022-11-02&sig=zg%2FdArI%2FlaY%2B8iimBlo%2BumTk9PMDkqPNc0aUUWp49WA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0389.JPG?sp=r&st=2024-02-19T08:53:54Z&se=2025-02-20T08:53:00Z&sv=2022-11-02&sig=DGQ3qGLofuXDmP5osWrQ9m%2F3JMUFwwemMA2cjZCmIH8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0390.JPG?sp=r&st=2024-02-19T08:54:12Z&se=2025-02-20T08:54:00Z&sv=2022-11-02&sig=cPitsj%2FT7D%2BdZkHO2A3qnCdS2diPThU3Ew%2FFcfp1MIE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0391.JPG?sp=r&st=2024-02-19T08:54:30Z&se=2025-02-20T08:54:00Z&sv=2022-11-02&sig=IMlR5iBFx4yOgLshiapk%2BWLnlgM1qUhWHLmMO%2Ff7SwM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0392.JPG?sp=r&st=2024-02-19T08:54:53Z&se=2025-02-20T08:54:00Z&sv=2022-11-02&sig=TdqxizmAqOvtFH4jqWms%2BTQXjIAOZYtI1kA6VaTDdbg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0393.JPG?sp=r&st=2024-02-19T08:55:10Z&se=2025-02-20T08:55:00Z&sv=2022-11-02&sig=yhHn8QbH7RYOGWarj6F4t8qoac7B0X5QY5tzXB3E3z8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0394.JPG?sp=r&st=2024-02-19T08:55:43Z&se=2025-02-20T08:55:00Z&sv=2022-11-02&sig=6DMpoyfdfSerSY6G78IK4WJl3Gqqeoof3J0UktzJZe0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0395.JPG?sp=r&st=2024-02-19T08:56:00Z&se=2025-02-20T08:56:00Z&sv=2022-11-02&sig=21skTb2nb%2FRFPphae9%2BsxxzrOU%2B90l%2FOe5QmYG7tNdM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0396.JPG?sp=r&st=2024-02-19T08:56:53Z&se=2025-02-20T08:56:00Z&sv=2022-11-02&sig=elZodpJyo84JPmckTTpLkm5Vt690XZXCV1UYzQRu160%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0397.JPG?sp=r&st=2024-02-19T08:57:12Z&se=2024-02-20T08:57:12Z&sv=2022-11-02&sig=rs0wVB4CCGcBIaWP7WGWG2f1AMT4cX4z2XfHEcL7qqk%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0398.JPG?sp=r&st=2024-02-19T08:57:29Z&se=2025-02-20T08:57:00Z&sv=2022-11-02&sig=U%2FK52yUEsXk1Hqz9%2BNCS3Ni4PzJDw0kEFHJk9quoB70%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0399.JPG?sp=r&st=2024-02-19T08:57:45Z&se=2025-02-20T08:57:00Z&sv=2022-11-02&sig=AVRW1pvibFagDEpGcjh100gwXDPDcswz4kmVzuuyD0w%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0400.JPG?sp=r&st=2024-02-19T09:02:37Z&se=2025-02-20T09:02:00Z&sv=2022-11-02&sig=3S5HpkRTjjn4qeTAwk8%2Fs5j7U%2BcBmKvJhZgIeeTqh%2F0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0401.JPG?sp=r&st=2024-02-19T09:03:21Z&se=2025-02-20T09:03:00Z&sv=2022-11-02&sig=%2FdAxVH2sRbPH4aVb1JvCOews5ncLZ4ClLWJzFpUsQ%2BI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0402.JPG?sp=r&st=2024-02-19T09:03:42Z&se=2025-02-20T09:03:00Z&sv=2022-11-02&sig=L%2BHj%2Bg6iLMJe617xzA%2B47T1xq5fF6pmKXl3vvVvg4Og%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0403.JPG?sp=r&st=2024-02-19T09:04:02Z&se=2025-02-20T09:04:00Z&sv=2022-11-02&sig=8ebiVzzgQg2XFVRa3%2BY9%2Fp1CjBScNfay61iOFa5I6Kc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0404.JPG?sp=r&st=2024-02-19T09:04:19Z&se=2025-02-20T09:04:00Z&sv=2022-11-02&sig=2JulM28opft8UJmZSuczSWzYEyC%2FaAtFqXo0EDarcfk%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0405.JPG?sp=r&st=2024-02-19T09:04:40Z&se=2025-02-20T09:04:00Z&sv=2022-11-02&sig=%2B0OBInx7j2WLkOxreYu5YFpz1FGD%2Bur%2FVUtNj3jbyxs%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0406.JPG?sp=r&st=2024-02-19T09:04:57Z&se=2025-02-20T09:04:00Z&sv=2022-11-02&sig=1uO00hnsWiTv1MmjBO%2Bmi5jdcoC7M5NYwQcYSHL6X2A%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0407.JPG?sp=r&st=2024-02-19T09:05:18Z&se=2025-02-20T09:05:00Z&sv=2022-11-02&sig=ty%2FbKJbXZv0hFCpk%2Fh8THN3qra%2BV2VClLO0FGQDdZHs%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0408.JPG?sp=r&st=2024-02-19T09:05:34Z&se=2025-02-20T09:05:00Z&sv=2022-11-02&sig=w4wtAEjyospkVS6ID8A0RlVmRSwKDDQwY3Wej9OwW%2Bk%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0409.JPG?sp=r&st=2024-02-19T09:05:51Z&se=2025-02-20T09:05:00Z&sv=2022-11-02&sig=qdJ8RX4CNe4%2Fo7SqTLMClH%2B4TAHfUQWOh4YpSc2K55w%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0410.JPG?sp=r&st=2024-02-19T09:06:09Z&se=2025-02-20T09:06:00Z&sv=2022-11-02&sig=RkhZ0PY%2FkR6Fw4xelCVcfPEhxdolpIpaPR2h4hTeNd4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0411.JPG?sp=r&st=2024-02-19T09:06:28Z&se=2025-02-20T09:06:00Z&sv=2022-11-02&sig=VRnIy2akukUSfJWY5O4SKOyTC%2BVrJ7AwQaxJ9iQmRVY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0412.JPG?sp=r&st=2024-02-19T09:06:44Z&se=2025-02-20T09:06:00Z&sv=2022-11-02&sig=Eam8%2FWxKuJf0%2BbRBW0rI63pCuo%2BBiUTIrZWKYyVZdw8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0413.JPG?sp=r&st=2024-02-19T09:07:00Z&se=2025-02-20T09:07:00Z&sv=2022-11-02&sig=uhruBXh%2B527ySJbnoX11rt80exaF1ffdxxMHMls3Q0A%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0414.JPG?sp=r&st=2024-02-19T09:07:21Z&se=2025-02-20T09:07:00Z&sv=2022-11-02&sig=Luiuv8PDSUiEo7qU9bkDv4w%2BpDIdaC4Ezr8uhgZZNHU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0415.JPG?sp=r&st=2024-02-19T09:07:39Z&se=2025-02-20T09:07:00Z&sv=2022-11-02&sig=%2FNtrD4DG94Tqaoz%2Fhxrd2hU%2BKS3ZqIi17oz97Jq%2FYoc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0416.JPG?sp=r&st=2024-02-19T09:07:59Z&se=2025-02-20T09:07:00Z&sv=2022-11-02&sig=Sq%2BHVwxndxd9mhSdCewYiA9TDIMmcrrLPB892Zn1tNk%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0417.JPG?sp=r&st=2024-02-19T09:08:25Z&se=2025-02-20T09:08:00Z&sv=2022-11-02&sig=zKMrhuA37ivgsCkoOYI04%2BCO7Y8HUK3PeDQwiskv%2FJY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0418.JPG?sp=r&st=2024-02-19T09:08:40Z&se=2025-02-20T09:08:00Z&sv=2022-11-02&sig=5McHEzqWBck%2FOLwwiG%2BC7Iwqz%2BOI%2FZCRsol98KmZhDI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0419.JPG?sp=r&st=2024-02-19T09:08:57Z&se=2025-02-20T09:08:00Z&sv=2022-11-02&sig=J98EL0Ln%2B5pN5qQ2D7IwhCsTB1BJ3Ff8KVgDMky6Zmw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0420.JPG?sp=r&st=2024-02-19T09:09:14Z&se=2025-02-20T09:09:00Z&sv=2022-11-02&sig=rIQHKwmqzuIbwl9YV0Pm1QP9eHdDxXIKJ9uLguxyFFY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0421.JPG?sp=r&st=2024-02-19T09:09:33Z&se=2025-02-20T09:09:00Z&sv=2022-11-02&sig=ATd23hVlYcoIymymHXeBJTIFNBhXKgXQooGrgCt%2BXIs%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0422.JPG?sp=r&st=2024-02-19T09:09:48Z&se=2025-02-20T09:09:00Z&sv=2022-11-02&sig=lNWPS8n0MfIPncm0gVl%2Bf0fE3Wv4m2iFDA6nVZyAxNg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0423.JPG?sp=r&st=2024-02-19T09:10:07Z&se=2025-02-20T09:10:00Z&sv=2022-11-02&sig=RhNhEb%2BR5eQ0RtJZjqtkuvjtYNPYT9Jt8ObffDQHjsY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0424.JPG?sp=r&st=2024-02-19T09:10:23Z&se=2025-02-20T09:10:00Z&sv=2022-11-02&sig=CWhYVZL7kyyOyJp64OPJHcBHm%2BIQv0ou8sj2gCKexpY%3D&sr=fG" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0425.JPG?sp=r&st=2024-02-19T09:10:42Z&se=2025-02-20T09:10:00Z&sv=2022-11-02&sig=NmUo2P2Y57EdeZJ2Fc4K%2FIR%2BFToEfE6QOHNnis3Icyc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0426.JPG?sp=r&st=2024-02-19T09:11:03Z&se=2025-02-20T09:11:00Z&sv=2022-11-02&sig=h0mUTF2RLz0t9J68DAppNmjXItBeN8LLSnuFcls4sTA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0427.JPG?sp=r&st=2024-02-19T09:11:21Z&se=2025-02-20T09:11:00Z&sv=2022-11-02&sig=UqgfME8eJPH%2B%2BLJPL76pF0NloG9W5V35qYkduKzIpm8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0428.JPG?sp=r&st=2024-02-19T09:11:40Z&se=2025-02-20T09:11:00Z&sv=2022-11-02&sig=MHL1nJlTzKCiZcD%2Bvrgj6yfTq9lELFzVixU0IfcpjtU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0429.JPG?sp=r&st=2024-02-19T09:12:03Z&se=2025-02-20T09:12:00Z&sv=2022-11-02&sig=jqgOaKa6c%2FLaWXyiUs0jkjzQsXq35W08CvAaVNTWXGk%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0430.JPG?sp=r&st=2024-02-19T09:12:23Z&se=2025-02-20T09:12:00Z&sv=2022-11-02&sig=%2F3j43%2F%2F%2BWiWGrX%2BYlM1azRa3mawqZrm9VuBmSBPJ%2B2Y%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0431.JPG?sp=r&st=2024-02-19T09:12:51Z&se=2025-02-19T09:12:00Z&sv=2022-11-02&sig=67z6ahdc0O03xcU3kKbIbNj6k08XQYGe5GrmRbERov0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0432.JPG?sp=r&st=2024-02-19T09:13:28Z&se=2025-02-20T09:13:00Z&sv=2022-11-02&sig=6z8ZOv31IGZEYpC5A%2Fpw%2Bmeu9TSOL8rLN5uURLINulg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0433.JPG?sp=r&st=2024-02-19T09:14:07Z&se=2025-02-20T09:14:00Z&sv=2022-11-02&sig=E69HHsUhfASNW%2FBOKi68YjmqXVdIXw2XedR2Kax%2BBts%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0434.JPG?sp=r&st=2024-02-19T09:15:18Z&se=2025-02-20T09:15:00Z&sv=2022-11-02&sig=R1P0z8iMFpzUyIYv%2BnWvg4vuKBSGom8hv2VyNpdij4Q%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0435.JPG?sp=r&st=2024-02-19T09:15:38Z&se=2025-02-20T09:15:00Z&sv=2022-11-02&sig=gF1CqfuyDiPfrFEl6n%2FJ%2FHHu21mpB2%2Bkxg4Wdf14cAU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0436.JPG?sp=r&st=2024-02-19T09:16:07Z&se=2025-02-20T09:16:00Z&sv=2022-11-02&sig=EzMV1yIc0f1Axutmnoe27%2FaC%2Bsp2%2F5V7tP4E9Ra7C%2Bs%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0437.JPG?sp=r&st=2024-02-19T09:16:31Z&se=2025-02-20T09:16:00Z&sv=2022-11-02&sig=T94Bw8YoGWvydUVWpupEJ6L%2BYm0gPwJzVnfgDJqbhNc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0438.JPG?sp=r&st=2024-02-19T09:16:58Z&se=2025-02-20T09:16:00Z&sv=2022-11-02&sig=n2askfYd2PxxnDPr3Yh9NLBvZ%2B5lUxVC4fxBxf7VOb0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0439.JPG?sp=r&st=2024-02-19T09:24:23Z&se=2025-02-20T09:24:00Z&sv=2022-11-02&sig=APX4PGJdrmO5is6DfDTTw%2BF3eksOLSXb3n0LGsMaNOc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0440.JPG?sp=r&st=2024-02-19T09:24:40Z&se=2025-02-20T09:24:00Z&sv=2022-11-02&sig=ZrL5amEbmAaMRKNxwbqyjSN1r4BuibTXd3AESBumNOA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0441.JPG?sp=r&st=2024-02-19T09:24:57Z&se=2025-02-20T09:24:00Z&sv=2022-11-02&sig=RogcA%2By77saKvhOxCsRPQKHyjkz%2B3PT%2BHf2dRyrJYd0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0442.JPG?sp=r&st=2024-02-19T09:25:15Z&se=2025-02-20T09:25:00Z&sv=2022-11-02&sig=AFlaUMqCZ8d5g8ZBmIra5Xgmv1z1RgMx7MRiyywaPPg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0443.JPG?sp=r&st=2024-02-19T09:25:31Z&se=2025-02-20T09:25:00Z&sv=2022-11-02&sig=DHHNwCz%2BSGYFTNoPcGV7inktkipYPjslhz6h0X0P1hA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0444.JPG?sp=r&st=2024-02-19T09:25:46Z&se=2025-02-20T09:25:00Z&sv=2022-11-02&sig=VB1j5MG0w%2B1BntB9oe4jjYYiezmLpF06fhKWjRgtWUY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0445.JPG?sp=r&st=2024-02-19T09:26:02Z&se=2025-02-20T09:26:00Z&sv=2022-11-02&sig=zO3SQ0ZpYe3XRE3d2Yzj7VHZE4%2FqMBM4iD%2Fd4wKMrBY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0446.JPG?sp=r&st=2024-02-19T09:26:19Z&se=2025-02-20T09:26:00Z&sv=2022-11-02&sig=z9SiaoWPHDb4W6sjsZ4fLuOEy6RueASnaPsquNFzogU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0447.JPG?sp=r&st=2024-02-19T09:26:45Z&se=2025-02-20T09:26:00Z&sv=2022-11-02&sig=nygj3HoVi48lUa%2FSOp4Lb7ScKNzsCKIZbNt6HoEeNTw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0448.JPG?sp=r&st=2024-02-19T09:27:05Z&se=2025-02-20T09:27:00Z&sv=2022-11-02&sig=sFL4kaoG0u6m%2BsXzHTPKPij2dARJnWOxjTwLLQ7ab0w%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0449.JPG?sp=r&st=2024-02-19T09:27:20Z&se=2025-02-20T09:27:00Z&sv=2022-11-02&sig=h87%2Bvq7Bz25kttWPMmkhs5wpBpZvKP2ywxm%2BE9sfe%2BY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0450.JPG?sp=r&st=2024-02-19T09:27:36Z&se=2025-02-20T09:27:00Z&sv=2022-11-02&sig=RjvNo%2FIDFYdP7ye0pdgvTv7TaBUqW%2FFNfZY062XIikA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0451.JPG?sp=r&st=2024-02-19T09:27:53Z&se=2025-02-20T09:27:00Z&sv=2022-11-02&sig=0WBi%2FCUDSVA5j%2BTqS9UCSkMUKvQCO2hArCsn4e7kJYU%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0452.JPG?sp=r&st=2024-02-19T09:28:07Z&se=2025-02-20T09:28:00Z&sv=2022-11-02&sig=w1AIayQdEAZH2O91mwJhhsNSjcie3HVpC4wK7tJhuyo%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0453.JPG?sp=r&st=2024-02-19T09:28:57Z&se=2025-02-20T09:28:00Z&sv=2022-11-02&sig=hdXYypPtX37zB7eHVVr%2FASUJ%2BqPw2MgopwBGTClnvAM%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0454.JPG?sp=r&st=2024-02-19T09:29:26Z&se=2025-02-20T09:29:00Z&sv=2022-11-02&sig=EZGed7MUWBZGXP%2FTqhC2726XQCwue40SWfD4r265unI%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0455.JPG?sp=r&st=2024-02-19T09:29:45Z&se=2025-02-20T09:29:00Z&sv=2022-11-02&sig=zMUxnTBk701WK%2BkyRp%2FmfRcSkdgQRf9xtAeIXN12oCs%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0456.JPG?sp=r&st=2024-02-19T09:30:01Z&se=2025-02-20T09:30:00Z&sv=2022-11-02&sig=yX23RuuDH4rV0rlznE%2FyGq%2FJrwGop7hByS1CP96miBA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0457.JPG?sp=r&st=2024-02-19T09:30:22Z&se=2025-02-20T09:30:00Z&sv=2022-11-02&sig=n0XXYIXvqmSf3rPipH5ao2QbUsojgiD%2BUIMxe9lApW4%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0458.JPG?sp=r&st=2024-02-19T09:30:43Z&se=2025-02-20T09:30:00Z&sv=2022-11-02&sig=ljgiVrFk29lvntcxjKVAXq%2B37FwVDZWvlPqn9so13Y0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0459.JPG?sp=r&st=2024-02-19T09:31:09Z&se=2025-02-20T09:31:00Z&sv=2022-11-02&sig=XEnI2RDu6myu9xObGVH1vDd9z3XoePZHpqXmVk0%2BD1w%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0460.JPG?sp=r&st=2024-02-19T09:33:52Z&se=2025-02-20T09:33:00Z&sv=2022-11-02&sig=GMX4tlYVMiuigrIeKfyLemxRipOKxMXwVZiVGpN%2BJmc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0461.JPG?sp=r&st=2024-02-19T09:34:11Z&se=2025-02-20T09:34:00Z&sv=2022-11-02&sig=IiGNAHE%2Bdpg1hJXi6ML9pXYZlyU9jEitmqce5wl15yQ%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0462.JPG?sp=r&st=2024-02-19T09:34:27Z&se=2024-02-20T09:34:27Z&sv=2022-11-02&sig=VeFR%2Fm31yF7fOXDeIqQ49LcKJ%2Fhm2PgIoWrH7zoS9i8%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0463.JPG?sp=r&st=2024-02-19T09:34:38Z&se=2025-02-20T09:34:00Z&sv=2022-11-02&sig=HDc2uhwLfbUsQIz12eIn73bO5gRgmpmGot6cTRIKbSc%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0464.JPG?sp=r&st=2024-02-19T09:35:29Z&se=2025-02-20T09:35:00Z&sv=2022-11-02&sig=GIkk8QLWEDjOw2P%2Fjs2ar2h%2F7IgPIwzAIi%2FrHpM864s%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0465.JPG?sp=r&st=2024-02-19T09:35:50Z&se=2025-02-20T09:35:00Z&sv=2022-11-02&sig=rJXZ9A6wNJGIaOUUMUyEWZmK%2BY4P0104CURnVDq01Bg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0466.JPG?sp=r&st=2024-02-19T09:36:08Z&se=2025-02-20T09:36:00Z&sv=2022-11-02&sig=NQXR8epggUqXoK5xSvrWagFceeKpqIGcbzH9c2LTEHg%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0467.JPG?sp=r&st=2024-02-19T09:36:22Z&se=2025-02-20T09:36:00Z&sv=2022-11-02&sig=vg4%2Biyk7WK1%2FU9hJYVJJdgT4BeFvVl9p2E84nEN%2FHmw%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0468.JPG?sp=r&st=2024-02-19T09:36:42Z&se=2025-02-20T09:36:00Z&sv=2022-11-02&sig=VwCLrGjDEUyJhbz4hmCYUSpGPDrjo9JuYoravZq%2BjeY%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0469.JPG?sp=r&st=2024-02-19T09:37:00Z&se=2025-02-20T09:37:00Z&sv=2022-11-02&sig=4GHI0lvvMgDkIzTo%2BIHWiOQ7cbJNRozIlezulnkMUxA%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0470.JPG?sp=r&st=2024-02-19T09:37:16Z&se=2025-02-20T09:37:00Z&sv=2022-11-02&sig=D9WLJ9mhrh4G%2FUikGO%2BV51OIUbeNQ%2BI1XzDfCuqh5Ko%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0471.JPG?sp=r&st=2024-02-19T09:37:36Z&se=2025-02-20T09:37:00Z&sv=2022-11-02&sig=fOHA65Lwz3xs5gInkKWo1CFmYZPY9A7QhpIX9a0M%2Bow%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0472.JPG?sp=r&st=2024-02-19T09:37:51Z&se=2025-02-20T09:37:00Z&sv=2022-11-02&sig=5JMaWItnYHK89THLr91ZT3Dyr%2B2Edcc7aR7Dods2BL0%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0473.JPG?sp=r&st=2024-02-19T09:38:11Z&se=2025-02-20T09:38:00Z&sv=2022-11-02&sig=2Nqb9wnQTwPNqkrjeV6UAjGy2ImpRZuo7QU5nAOFVic%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0474.JPG?sp=r&st=2024-02-19T09:38:27Z&se=2025-02-20T09:38:00Z&sv=2022-11-02&sig=0UN3K9NB2xY%2Fvuugztniweklw0oeCqO5GnPYn8oaVyE%3D&sr=f" alt="Image 32">
+                <img src="https://mission100ade04adls.file.core.windows.net/ga1/DJI_0475.JPG?sp=r&st=2024-02-19T09:38:50Z&se=2025-02-20T09:38:00Z&sv=2022-11-02&sig=8VAwgYyM1x2%2FfgWpZrhWE6Af%2FIsZgirF%2FMErO7TGNIA%3D&sr=f" alt="Image 32">
+             
+            
+                                
+                
+                
+               
+               
+               
+            </div>
+        </div>
+    </div>
+
+    
+    
+
+       
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function openImageLink(link) {
+                
+                const linkElement = document.createElement('a');
+                linkElement.href = link;
+                linkElement.target = '_blank';
+                linkElement.rel = 'noopener noreferrer';
+                linkElement.classList.add('invisible-link');
+                document.body.appendChild(linkElement);
+
+                
+                linkElement.click();
+
+                
+                document.body.removeChild(linkElement);
+                
+            }
+            const image1Button = document.getElementById('image1');
+    image1Button.addEventListener('click', function () {
+        openImageLink('https://cloud.agisoft.com/shared/projects/64e1f72a-c848-4557-b03a-c49272e33872');
+    });
+            function handlePersonButtonClick(personButton, missionContainer, imageSection) {
+                personButton.addEventListener('click', function () {
+                    const username = prompt('Enter username:');
+                    const password = prompt('Enter password:');
+
+                   
+                    if (username === personButton.dataset.username && password === personButton.dataset.password) {
+                      
+                        missionContainer.classList.toggle('active');
+
+                        
+                        if (!missionContainer.classList.contains('active')) {
+                            document.querySelectorAll('.mission-container').forEach(function (container) {
+                                container.classList.remove('active');
+                            });
+                        }
+                    } else {
+                        alert('Invalid username or password.');
+                    }
+                });
+            }
+
+          
+            function handleMineButtonClick(mineButton, personContainers) {
+                mineButton.addEventListener('click', function () {
+                 
+                    personContainers.forEach(function (personContainer) {
+                        personContainer.classList.toggle('active');
+
+                        
+                        if (!personContainer.classList.contains('active')) {
+                            document.querySelectorAll('.mission-container').forEach(function (container) {
+                                container.classList.remove('active');
+                            });
+                        }
+                    });
+                });
+            }
+
+           
+            function handleMissionButtonClick(missionButton, Map, imageSection) {
+        missionButton.addEventListener('click', function () {
+        
+            document.getElementById('Map').style.visibility = 'visible';
+
+           
+            imageSection.style.display = 'flex';
+
+            const images = missionButton.dataset.images.split(",");
+            imageSection.innerHTML = images.map(image => `<img src="${image}" alt="Mission Image">`).join("");
+        });
+    }
+
+
+           
+            const mine1Button = document.getElementById('mine-1');
+            const personContainer1 = document.getElementById('person-container-1');
+            const missionContainer1 = document.getElementById('mission-container-1');
+            const Map = document.getElementById('Map');
+            const imageSection = document.getElementById('image-section');
+
+           
+            handleMineButtonClick(mine1Button, [personContainer1]);
+
+            
+            const personButton1 = document.querySelector('#person-container-1 .person-button');
+            handlePersonButtonClick(personButton1, missionContainer1, imageSection);
+
+            
+            const missionButton1 = document.querySelector('#mission-container-1 button');
+            handleMissionButtonClick(missionButton1, Map, imageSection);
+
+         
+        });
+
+
+
+        const resizeOptionsContainer = document.querySelector('.image-resize-options');
+    const resizeOptions = document.getElementsByName('resize-option');
+    const images = document.querySelectorAll('.images-container img');
+
+    
+    function handleCheckboxChange() {
+       
+        resizeOptions.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                if (this.checked) {
+                    resizeOptions.forEach(otherCheckbox => {
+                        if (otherCheckbox !== this) {
+                            otherCheckbox.checked = false;
+                        }
+                    });
+                    resizeImages(this.value);
+                }
+            });
+        });
+    }
+
+   
+    function resizeImages(size) {
+    const sizes = {
+        small: { width: '10%', height: '25%' },
+        medium: { width: '30%', height: '45%' },
+        large: { width: '80%', height: '95%' },
+    };
+
+    images.forEach(image => {
+        image.style.width = sizes[size].width;
+        image.style.height = sizes[size].height;
+    });
+}
+
+    
+    const missionButton1 = document.querySelector('#mission-container-1 button');
+    missionButton1.addEventListener('click', function () {
+        resizeOptionsContainer.style.display = 'block';
+    });
+
+    
+    handleCheckboxChange();
+
+
+
+
+     
+    </script>
+
+</body>
+</html>

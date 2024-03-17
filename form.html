@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <style>
+        /* You can add some basic styling here */
+       
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+          
+        }
+        .main-div{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            background:linear-gradient(100deg, #ccc , navy);
+            
+        }
+        .sidebar {
+            height: 93vh;
+            width: 15%;
+            background-color: navy;
+            padding-top: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            border: 2px solid white;
+        }
+
+        .logo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 92%;
+            height: 10vh;
+            margin-left: 5px;
+            border: 3px solid black;
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .logo img{
+            width: 60%;
+            height: 80%;
+        }
+
+        .sidebar button {
+            width: 85%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-left: 15px;
+            color: #000;
+            background-color: #fff;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 15px;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .sidebar button:hover {
+           
+            scale: 1.09;
+            transition: 0.2s ease-in-out;
+        }
+
+        .sidebar button a{
+            text-decoration: none;
+            color: black;
+            font-size: 15px;
+        }
+
+        .person-container {
+            display: none;
+            width: 80%;
+            padding-left: 15px;
+        }
+
+        .person-container button{
+            width: 90%;
+        }
+
+        .person-container.active {
+            display: block;
+        }
+
+        .mission-container {
+            display: none;
+            padding-left: 40px;
+            margin-top: 10px;
+        }
+
+        .mission-container.active {
+            display: block;
+        }
+
+        .mission-container button {
+            width: 95%;
+            padding: 10px;
+            text-align: center;
+            color: white;
+            background-color: #777;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .mission-container button:hover {
+            background-color: #999;
+           
+        }
+
+        .section{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 85%;
+            height: 100vh;
+       
+           
+        }
+        .main{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            height: 10%;
+            color: white;
+        }
+       
+
+        .form{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            height: 90%;
+        }
+
+        
+        form {
+            height: 80%;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 2px solid white;
+            background:linear-gradient(100deg, #ccc , navy);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            border-radius: 8px;
+        }
+
+        input:focus{
+            border:2px solid #ddd;
+        }
+
+        label{
+            padding-left: 15px;
+            margin-bottom: 10px;
+            color: navy;
+            font-size: 18px;
+        }
+        form > .buttons{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+        
+        }
+
+        form .buttons a{
+            text-decoration: none;
+            color: #fff;
+            font-size: 15px;
+            width: 50%;
+            height: 100%;
+        }
+
+        form button {
+            background:linear-gradient(100deg, #ccc , navy);
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 40%;
+            margin: 10px 0;
+            border: 2px solid white;
+            
+            border-radius: 8px;
+            font-size: 15px;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        form button:hover{
+            scale: 1.05;
+            transition: 0.1s ease-in-out;
+           
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div class="main-div">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="mine-logo.png">
+            </div>
+            
+            <button   id="Create"><a href="form.html">Create User</a></button>
+            <button id="mine-1"><a href="mine.html">Mine-1</a></button>
+            <div class="person-container" id="person-container-1">
+                <button class="person-button" data-username="rahul" data-password="rahul1">Person-1</button>
+                <div class="mission-container" id="mission-container-1">
+                <button>Mission-1</button>
+                <button>Mission-2</button>
+                <button>Mission-3</button>
+                <button id="image1" class = "hidden" onclick="openImageLink('https://cloud.agisoft.com/shared/projects/64e1f72a-c848-4557-b03a-c49272e33872')">Project A</button>
+                </div>
+             
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="main">
+                <h2 style="font-family:georgia"> <u>Welcome to the MINE Website</u> </h2>
+            </div>
+            <div class="form">
+                <form id="signupForm">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+            
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+            
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+            
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" required>
+            
+                    <div class="buttons">
+                        <button type="button" onclick="createUser()">Create User</button>
+                        <button><a href="mine.html">Close</a></button>
+                    </div>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+
+   <script>
+    function createUser() {
+    // Get form elements
+    var email = document.getElementById("email").value;
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var phoneNumber = document.getElementById("phoneNumber").value;
+
+    // Check if any of the required fields are empty
+    if (email === "" || username === "" || password === "" || phoneNumber === "") {
+        alert("Please fill out all required fields.");
+    } else {
+        // Process the form or submit it
+        // You can add your code to handle form submission here
+        alert("User created successfully!");
+        // Optionally, you can reset the form after submission
+        document.getElementById("signupForm").reset();
+    }
+}
+
+   </script>
+
+</body>
+</html>
